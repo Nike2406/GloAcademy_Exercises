@@ -5,8 +5,7 @@ let lang = 'ru';
 if (lang == 'ru') {
     console.log('Понедельник, вторник, среда, четверг, ' 
     + 'пятница, суббота, воскресенье.');
-}
-if (lang == 'en') {
+} else if (lang == 'en') {
     console.log('Monday, tuesday, wednesday, thursday, ' +
     'friday, saturday, sunday.');
 }
