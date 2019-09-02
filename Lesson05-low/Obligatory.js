@@ -79,7 +79,7 @@ function getTargetMonth(){
 if (getTargetMonth() >= 0){
     console.log('Ваша цель будет достигнута через ' + getTargetMonth() +
     ' месяцев.');
-}else {
+} else {
     console.log('Цель не будет достигнута');
 }
  
@@ -90,7 +90,7 @@ console.log('Период ' + period + ' месяцев. За это время 
 let budgetDay = Math.floor(accumulatedMonth() / 30);
 
 if (budgetDay < 0){
-console.log('Что то пошло не так.');
+    console.log('Что то пошло не так.');
 } else {
     console.log('Дневной бюджет: ' + budgetDay + 
         ' рублей, остаток от деления: ' + accumulatedMonth() % 30);
