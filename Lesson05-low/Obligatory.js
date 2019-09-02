@@ -15,8 +15,8 @@ let money, howMuchMoney,
         howMuchMoney = prompt('Ваш месячный доход?', 200000);
         console.log('howMuchMoney', howMuchMoney, typeof(howMuchMoney));
     }
-    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null)    
-}
+    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null);    
+};
 start();
 
 money = +howMuchMoney;  //тк в промте неправильно отображается тип данных,
@@ -26,7 +26,7 @@ console.log('money', money, typeof(money));
 
 let showTypeOf = function(data){
     console.log(data, typeof(data));
-}
+};
 
 showTypeOf(money);
 showTypeOf(income);
@@ -59,7 +59,7 @@ for (let i = 0; i < 2; i++) {
         sum += +howMuchExp;
     }
     return sum;    
-}
+};
 
 
 let expensesAmount = getExpensesMonth();
@@ -70,7 +70,7 @@ console.log('Расходы за месяц: ', expensesAmount);
 
 let accumulatedMonth = function getAccumulatedMonth(){    
     return money - expensesAmount;
-}
+};
 console.log('Накопления за месяц: ', accumulatedMonth());
 
 function getTargetMonth(){
@@ -106,6 +106,6 @@ let getStatusIncome = function(){
     } else {
         return('Что-то пошло не так');
     }
-}
+};
 
 console.log(getStatusIncome());

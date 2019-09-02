@@ -8,8 +8,8 @@ let money,
         howMuchMoney = prompt('Ваш месячный доход?', 200000);
         console.log('howMuchMoney', howMuchMoney, typeof(howMuchMoney));
     }
-    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null)    
-}
+    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null);    
+};
 start();
 
 money = +howMuchMoney; 
@@ -35,7 +35,7 @@ let appData = {
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
     }
             
-}
+};
 appData.asking();
 
 //перенос цикла
@@ -65,7 +65,7 @@ for (let i = 0; i < 2; i++) {
         sum += +howMuchExp;
     }
     return sum;    
-}
+};
 
 
 let expensesAmount = appData.getExpensesMonth();
@@ -76,14 +76,14 @@ console.log('Расходы за месяц: ', expensesAmount);
 
 appData.getAccumulatedMonth = function getAccumulatedMonth(){    
     return money - expensesAmount;
-}
+};
 console.log('Накопления за месяц: ', appData.getAccumulatedMonth());
 
 //getTargetMonth
 
 appData.getTargetMonth = function getTargetMonth(){
     return Math.floor(appData.mission / appData.getAccumulatedMonth());
-}
+};
 if (appData.getTargetMonth() >= 0){
     console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
         ' месяцев.');
@@ -98,12 +98,12 @@ console.log('Период ' + appData.period + ' месяцев. За это в�
 
 let budgetDay = Math.floor(appData.getAccumulatedMonth() / 30);
 
-if (budgetDay < 0)
-console.log('Что то пошло не так.');
-
-else 
+if (budgetDay < 0){
+    console.log('Что то пошло не так.');
+} else { 
     console.log('Дневной бюджет: ' + budgetDay + 
         ' рублей, остаток от деления: ' + appData.getAccumulatedMonth() % 30);
+}
 
 appData.getStatusIncome = function(){
     if (budgetDay >= 800) {
@@ -115,6 +115,6 @@ appData.getStatusIncome = function(){
     } else {
         return('Что-то пошло не так');
     }
-}
+};
 
 console.log(appData.getStatusIncome());

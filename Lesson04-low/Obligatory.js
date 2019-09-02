@@ -11,7 +11,7 @@ let money = +prompt('Ваш месячный доход?', 200000),
 
 showTypeOf = function(data){    //2.1
     console.log(data, typeof(data));
-}
+};
 
 showTypeOf(money);
 showTypeOf(income);
@@ -28,11 +28,10 @@ let expPerMonth1 = prompt('Какие обязательные ежемесяч�
 function getExpensesMonth(){        //1.1
     return amountPerMonth1 + amountPerMonth2;
 }
-console.log('Расходы за месяц: ', getExpensesMonth());
 
 let accumulatedMonth = function getAccumulatedMonth(){    //1.2
     return money - getExpensesMonth();
-}
+};
 console.log('Накопления за месяц: ', accumulatedMonth());
 
 function getTargetMonth(){      //1.3
@@ -42,14 +41,7 @@ function getTargetMonth(){      //1.3
 console.log('Ваша цель будет достигнута через ' + getTargetMonth() +
     ' месяцев.'); //2.3
 
- 
-console.log('Цель заработать ' + mission + ' рублей');
-console.log('Период ' + period + ' месяцев. За это время вы накопите ' + 
-    accumulatedMonth() * period + ' рублей.');  //2.2
-
 let budgetDay = Math.floor(accumulatedMonth() / 30);
-console.log('Дневной бюджет: ' + budgetDay + 
-    ' рублей, остаток от деления: ' + accumulatedMonth() % 30);
 
 let getStatusIncome = function(){ //2.1
     if (budgetDay >= 800) {
@@ -61,6 +53,6 @@ let getStatusIncome = function(){ //2.1
     } else {
         return('Что-то пошло не так');
     }
-}
+};
 
 console.log(getStatusIncome());
