@@ -3,7 +3,7 @@
 function getOneVar(arg){
     if (typeof(arg) !== 'string') { 
         console.log(arg + ' - это не строка.'); 
-     }else{
+     } else {
         let oneVar = arg.trim();
         if (oneVar.length > 30) {
             oneVar  = oneVar.slice(0, 30) + '...'; 
