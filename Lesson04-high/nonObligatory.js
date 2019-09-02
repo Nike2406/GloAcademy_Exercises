@@ -6,7 +6,7 @@ function getOneVar(arg){
      }else{
         let oneVar = arg.trim();
         if (oneVar.length > 30) {
-            oneVar  = oneVar.slice(0, 30) + '...';; 
+            oneVar  = oneVar.slice(0, 30) + '...'; 
         }
         
         console.log('Это строка: ' + oneVar );
