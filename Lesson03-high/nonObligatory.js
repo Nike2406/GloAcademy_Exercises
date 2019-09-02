@@ -28,7 +28,7 @@ let arr = {
 
     'en': ['Monday, tuesday, wednesday, ' +
     'thursday, friday, saturday, sunday.']
-}
+};
 
 console.log(arr[lang]);
 
