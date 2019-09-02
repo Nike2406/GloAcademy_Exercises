@@ -1,22 +1,28 @@
 'use strict';
 
-let money;
-let income = 'Channel';
-let addExpenses = prompt('Перечислите возможные ' + 
-'расходы за рассчитываемый период через запятую', 'Курсы, отдых, приобретения');
-let deposit = confirm('Есть ли у вас депозит в банке?');
-let mission = 1000000;
-let period = 12;
+let money, howMuchMoney,
+    income = 'Channel',
+    addExpenses = prompt('Перечислите возможные ' + 
+        'расходы за рассчитываемый период через запятую',
+         'Курсы, отдых, приобретения'),
+    deposit = confirm('Есть ли у вас депозит в банке?'),
+    mission = 1000000,
+    period = 12,
 
-let start = function(){
+    start = function(){
 
     do{
-        money = prompt('Ваш месячный доход?', 200000);
-        console.log('money', money, typeof(money));
+        howMuchMoney = prompt('Ваш месячный доход?', 200000);
+        console.log('howMuchMoney', howMuchMoney, typeof(howMuchMoney));
     }
-    while(isNaN(money) || money === '' || money === null)    
+    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null)    
 }
 start();
+
+money = +howMuchMoney;  //тк в промте неправильно отображается тип данных,
+                        //пришлось ввести еще одну переменную, которая только после 
+                        //работы цикла присваивает правильное значение
+console.log('money', money, typeof(money));
 
 let showTypeOf = function(data){
     console.log(data, typeof(data));
@@ -31,28 +37,28 @@ let expPerMonth1, expPerMonth2;
 
 let getExpensesMonth = function(){
     
-    let sum = 0, howMuch;
+    let sum = 0, 
+        howMuchExp;
     
 for (let i = 0; i < 2; i++) {
-    if (i === 0){
-        expPerMonth1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 
-        'Налоги');
-    }
+        if (i === 0){
+            expPerMonth1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 
+                'Налоги');
+        }
 
-    if (i === 1){
-        expPerMonth1 = prompt('Какие другие  обязательные ежемесячные расходы у вас есть?', 
-        'Еда');
-    }
+        if (i === 1){
+            expPerMonth1 = prompt('Какие другие  обязательные ежемесячные расходы у вас есть?', 
+                'Еда');
+        }
 
-    do {
-        howMuch = prompt('Во сколько это обойдется?', 6500);
-    }
-    while (isNaN(howMuch) || howMuch === '' || howMuch === null);
+        do {
+            howMuchExp = prompt('Во сколько это обойдется?', 6500);
+        }
+        while (isNaN(howMuchExp) || howMuchExp === '' || howMuchExp === null);
 
-    sum += +howMuch;
+        sum += +howMuchExp;
     }
-    return sum;
-    
+    return sum;    
 }
 
 
@@ -68,27 +74,27 @@ let accumulatedMonth = function getAccumulatedMonth(){
 console.log('Накопления за месяц: ', accumulatedMonth());
 
 function getTargetMonth(){
-    return Math.floor(mission/accumulatedMonth());
+    return Math.floor(mission / accumulatedMonth());
 }
-if (getTargetMonth()>=0)
+if (getTargetMonth() >= 0){
     console.log('Ваша цель будет достигнута через ' + getTargetMonth() +
     ' месяцев.');
- else 
+}else {
     console.log('Цель не будет достигнута');
-
+}
  
 console.log('Цель заработать ' + mission + ' рублей');
 console.log('Период ' + period + ' месяцев. За это время вы накопите ' + 
-accumulatedMonth()*period +' рублей.');
+    accumulatedMonth() * period + ' рублей.');
 
-let budgetDay = Math.floor(accumulatedMonth()/30);
+let budgetDay = Math.floor(accumulatedMonth() / 30);
 
-if (budgetDay < 0)
+if (budgetDay < 0){
 console.log('Что то пошло не так.');
-
-else 
+} else {
     console.log('Дневной бюджет: ' + budgetDay + 
-    ' рублей, остаток от деления: ' + accumulatedMonth()%30);
+        ' рублей, остаток от деления: ' + accumulatedMonth() % 30);
+}
 
 let getStatusIncome = function(){
     if (budgetDay >= 800) {
