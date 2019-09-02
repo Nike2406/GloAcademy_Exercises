@@ -1,14 +1,19 @@
 'use strict';
 
-let money;
-let start = function(){
+let money, 
+    howMuchMoney,
+    start = function(){
+
     do{
-        money = +prompt('Ваш месячный доход?', 200000);
-        console.log('money', money, typeof(money));
+        howMuchMoney = prompt('Ваш месячный доход?', 200000);
+        console.log('howMuchMoney', howMuchMoney, typeof(howMuchMoney));
     }
-    while(isNaN(money) || money === '' || money === null)    
+    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null)    
 }
 start();
+
+money = +howMuchMoney; 
+console.log('money', money, typeof(money));
 
 let appData = {
     income: {}, 
@@ -24,20 +29,12 @@ let appData = {
     expensesMonth: 0,
     asking: function(){
         let addExpenses = prompt('Перечислите возможные ' + 
-        'расходы за рассчитываемый период через запятую', 
-        'Курсы, отдых, приобретения');
+                'расходы за рассчитываемый период через запятую', 
+                'Курсы, отдых, приобретения');
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
     }
 }
-
-let showTypeOf = function(item){
-    console.log(typeof item);
-}
-
-showTypeOf(money);
-showTypeOf(appData.income);
-showTypeOf(appData.deposit);
 
 
 let expPerMonth1, expPerMonth2;
