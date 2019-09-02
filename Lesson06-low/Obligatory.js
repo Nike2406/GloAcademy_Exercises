@@ -18,7 +18,10 @@ console.log('money', money, typeof(money));
 let appData = {
     income: {}, 
     addIncome: [],
-    expenses: {},
+    expenses: {
+        expPerMonth1:howMuchExp,
+        expPerMonth1:howMuchExp
+    },
     addExpenses: [],
     deposit: false,
     mission: 10000000,
@@ -33,33 +36,39 @@ let appData = {
                 'Курсы, отдых, приобретения');
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
+
+            for (let i = 0; i < 2; i++) {
+                if (i === 0){
+                    expPerMonth1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 
+                    'Налоги');
+                }
+            
+                if (i === 1){
+                    expPerMonth1 = prompt('Какие другие  обязательные ежемесячные расходы у вас есть?', 
+                    'Еда');
+                }
+            
+                let howMuchExp;
+                do {
+                    howMuchExp = prompt('Во сколько это обойдется?', 6500);
+                }
+                while (isNaN(howMuchExp) || howMuchExp === '' || howMuchExp === null);
     }
 }
 
+appData.asking();      //запросы
 
+
+//перенос цикла
 let expPerMonth1, expPerMonth2;
 
 appData.getExpensesMonth = function(){
     
-    let sum = 0, howMuch;
+    let sum = 0, howMuchExp;
     
-for (let i = 0; i < 2; i++) {
-    if (i === 0){
-        expPerMonth1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 
-        'Налоги');
-    }
 
-    if (i === 1){
-        expPerMonth1 = prompt('Какие другие  обязательные ежемесячные расходы у вас есть?', 
-        'Еда');
-    }
 
-    do {
-        howMuch = prompt('Во сколько это обойдется?', 6500);
-    }
-    while (isNaN(howMuch) || howMuch === '' || howMuch === null);
-
-    sum += +howMuch;
+    sum += +howMuchExp;
     }
     return sum;
     
