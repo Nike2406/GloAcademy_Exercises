@@ -24,8 +24,10 @@ console.log('Ваш ежемесячный бюджет равен ' + budgetMon
 console.log('Ваша цель будет достигнута через ' + Math.ceil(mission / budgetMonth) +
  ' месяцев.');      //7
 
-console.log(typeof(money), typeof(income), typeof(deposit)); //4
-console.log(income.length);
+console.log('money: ', typeof(money)); //4
+console.log('income: ', typeof(income));
+console.log('deposit: ', typeof(deposit));
+
 console.log('Период ' + period + ' месяцев');
 console.log('Цель заработать ' + mission + ' рублей');
 
@@ -37,10 +39,10 @@ console.log('Дневной бюджет: ' + budgetDay +
 
 if (budgetDay >= 800) {         //9
     console.log('Высокий уровень дохода');
-}else if (budgetDay >= 300 && budgetDay < 800) {
+} else if (budgetDay >= 300 && budgetDay < 800) {
     console.log('Средний уровень дохода');
-}else if (budgetDay >= 0 && budgetDay < 300) {
+} else if (budgetDay >= 0 && budgetDay < 300) {
     console.log('Низкий уровень дохода');
-}else {
+} else {
     console.log('Что-то пошло не так');
 }
