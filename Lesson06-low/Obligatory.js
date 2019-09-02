@@ -6,14 +6,12 @@ let money,
 
     do{
         howMuchMoney = prompt('Ваш месячный доход?', 200000);
-        console.log('howMuchMoney', howMuchMoney, typeof(howMuchMoney));
     }
     while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null);    
 };
 start();
 
 money = +howMuchMoney; 
-console.log('money', money, typeof(money));
 
 let appData = {
     income: {}, 
@@ -91,19 +89,9 @@ if (appData.getTargetMonth() >= 0){
     console.log('Цель не будет достигнута');
  }
 
- 
-console.log('Цель заработать ' + appData.mission + ' рублей');
-console.log('Период ' + appData.period + ' месяцев. За это время вы накопите ' + 
-    appData.getAccumulatedMonth() * appData.period + ' рублей.');
 
 let budgetDay = Math.floor(appData.getAccumulatedMonth() / 30);
 
-if (budgetDay < 0){
-    console.log('Что то пошло не так.');
-} else { 
-    console.log('Дневной бюджет: ' + budgetDay + 
-        ' рублей, остаток от деления: ' + appData.getAccumulatedMonth() % 30);
-}
 
 appData.getStatusIncome = function(){
     if (budgetDay >= 800) {
