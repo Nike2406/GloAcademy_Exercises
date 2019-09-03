@@ -10,13 +10,14 @@ let money,
     period = 12,
 
     start = function() {
-    let money;
     do{
-        money = prompt('Ваш месячный доход?', 200000);
+        money = +prompt('Ваш месячный доход?', 200000);
     }
-    while(isNaN(money) || money === '' || money === null);    
+    while(isNaN(money) || money == '' || money == null);   
+    
+    return money;
 };
-money = +start();
+start();
 
 let showTypeOf = function(data) {
     console.log(data, typeof(data));
