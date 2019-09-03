@@ -1,17 +1,16 @@
 'use strict';
 
 let money, 
-    howMuchMoney,
     start = function(){
+    let money;
 
     do{
-        howMuchMoney = prompt('Ваш месячный доход?', 200000);
+        money = prompt('Ваш месячный доход?', 200000);
     }
-    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null);    
+    while(isNaN(money) || money === '' || money === null);    
 };
-start();
 
-money = +howMuchMoney; 
+money = +start(); 
 
 let appData = {
     income: {}, 

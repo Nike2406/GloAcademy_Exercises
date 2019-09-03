@@ -1,6 +1,6 @@
 'use strict';
 
-let money, howMuchMoney,
+let money,
     income = 'Channel',
     addExpenses = prompt('Перечислите возможные ' + 
         'расходы за рассчитываемый период через запятую',
@@ -9,20 +9,16 @@ let money, howMuchMoney,
     mission = 1000000,
     period = 12,
 
-    start = function(){
-
+    start = function() {
+    let money;
     do{
-        howMuchMoney = prompt('Ваш месячный доход?', 200000);
+        money = prompt('Ваш месячный доход?', 200000);
     }
-    while(isNaN(howMuchMoney) || howMuchMoney === '' || howMuchMoney === null);    
+    while(isNaN(money) || money === '' || money === null);    
 };
-start();
+money = +start();
 
-money = +howMuchMoney;  //тк в промте неправильно отображается тип данных,
-                        //пришлось ввести еще одну переменную, которая только после 
-                        //работы цикла присваивает правильное значение
-
-let showTypeOf = function(data){
+let showTypeOf = function(data) {
     console.log(data, typeof(data));
 };
 
@@ -33,7 +29,7 @@ showTypeOf(deposit);
 
 let expPerMonth1, expPerMonth2;
 
-let getExpensesMonth = function(){
+let getExpensesMonth = function() {
     
     let sum = 0, 
         howMuchExp;
@@ -62,15 +58,15 @@ for (let i = 0; i < 2; i++) {
 
 let expensesAmount = getExpensesMonth();
 
-let accumulatedMonth = function getAccumulatedMonth(){    
+let accumulatedMonth = function getAccumulatedMonth() {    
     return money - expensesAmount;
 };
 console.log('Накопления за месяц: ', accumulatedMonth());
 
-function getTargetMonth(){
+function getTargetMonth() {
     return Math.floor(mission / accumulatedMonth());
 }
-if (getTargetMonth() >= 0){
+if (getTargetMonth() >= 0) {
     console.log('Ваша цель будет достигнута через ' + getTargetMonth() +
         ' месяцев.');
 } else {
@@ -79,7 +75,7 @@ if (getTargetMonth() >= 0){
 
 let budgetDay = Math.floor(accumulatedMonth() / 30);
 
-let getStatusIncome = function(){
+let getStatusIncome = function() {
     if (budgetDay >= 800) {
         return ('Высокий уровень дохода');
     } else if (budgetDay >= 300 && budgetDay < 800){ 
