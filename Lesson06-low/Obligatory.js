@@ -11,8 +11,8 @@ start = function() {
 start();
 
 let appData = {
-    income: {}, 
-    addIncome: [],
+    income: {},     //в программе не используется
+    addIncome: [],  //в программе не используется
     expenses: {},
     addExpenses: [],
     deposit: false,
@@ -70,8 +70,6 @@ appData.getBudget = function getBudget() {
 };
 appData.getBudget();
 
-console.log('Накопления за месяц: ', appData.budgetMonth);
-
 //getTargetMonth
 
 appData.getTargetMonth = function getTargetMonth() {
@@ -87,7 +85,7 @@ if (appData.getTargetMonth() >= 0) {
 appData.getStatusIncome = function() {
     if (appData.budgetDay >= 800) {
         return ('Высокий уровень дохода');
-    } else if (appData.budgetDay >= 300 && appData.budgetDay < 800){ 
+    } else if (appData.budgetDay >= 300 && appData.budgetDay < 800) { 
         return('Средний уровень дохода');
     } else if (appData.budgetDay >= 0 && appData.budgetDay < 300) {
         return('Низкий уровень дохода');
@@ -97,4 +95,10 @@ appData.getStatusIncome = function() {
 };
 
 console.log(appData.getStatusIncome());
+
+
+console.log('Наша программа включает в себя данные:');
+for (let key in appData) {
+    console.log(key + ':' + appData[key]);
+}
 console.log(appData);
