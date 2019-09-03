@@ -1,7 +1,7 @@
 let week = ['monday', 'tuesday', 'wednesday', 'thursday',
     'friday', 'saturday', 'sunday'],
     
-    today = new Date(2019, 8, 3);
+    today = new Date();
 
 week.forEach (function(item, i, arr) {
   if (i >= 5) {
