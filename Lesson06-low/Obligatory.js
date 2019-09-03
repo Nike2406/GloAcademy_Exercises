@@ -36,7 +36,7 @@ let appData = {
             for (let i = 0; i < 2; i++) {
                 expense = prompt('Введите обязательную статью расходов', 'Расход' + (i+1));
                 do {
-                  amount = +prompt('Во сколько это обойдется?', 500);
+                  amount = +prompt('Во сколько это обойдется?', 5000);
                 }
                   while (isNaN(amount) || amount === '' || amount === null);
                   appData.expenses[expense] = +amount;
@@ -62,16 +62,20 @@ appData.expensesMonth = appData.getExpensesMonth();
 console.log('Расходы за месяц: ', appData.expensesMonth );
 
 //замена accumulatedMonth на appData.getAccumulatedMonth
+//appData.getAccumulatedMonth -> appData.getBudget (8)
 
-appData.getAccumulatedMonth = function getAccumulatedMonth(){    
-    return money - appData.expensesMonth;
+appData.getBudget = function getBudget() {    
+    appData.budgetMonth = money - appData.expensesMonth;
+    appData.budgetDay = Math.floor(appData.budgetMonth / 30);    
 };
-console.log('Накопления за месяц: ', appData.getAccumulatedMonth());
+appData.getBudget();
+
+console.log('Накопления за месяц: ', appData.budgetMonth);
 
 //getTargetMonth
 
 appData.getTargetMonth = function getTargetMonth() {
-    return Math.floor(appData.mission / appData.getAccumulatedMonth());
+    return Math.floor(appData.mission / appData.budgetMonth);
 };
 if (appData.getTargetMonth() >= 0) {
     console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
@@ -80,16 +84,12 @@ if (appData.getTargetMonth() >= 0) {
     console.log('Цель не будет достигнута');
  }
 
-
-let budgetDay = Math.floor(appData.getAccumulatedMonth() / 30);
-
-
 appData.getStatusIncome = function() {
-    if (budgetDay >= 800) {
+    if (appData.budgetDay >= 800) {
         return ('Высокий уровень дохода');
-    } else if (budgetDay >= 300 && budgetDay < 800){ 
+    } else if (appData.budgetDay >= 300 && appData.budgetDay < 800){ 
         return('Средний уровень дохода');
-    } else if (budgetDay >= 0 && budgetDay < 300) {
+    } else if (appData.budgetDay >= 0 && appData.budgetDay < 300) {
         return('Низкий уровень дохода');
     } else {
         return('Что-то пошло не так');
