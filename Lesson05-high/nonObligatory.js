@@ -8,7 +8,7 @@ let arr = [];
 for (let i = 0; i < 7; i++) { 
     arr[i] = prompt('Введите число', Math.floor(Math.random()*100000));
     
-    if (arr[i][0] =='4' || arr[i][0] == '2'){
+    if (arr[i][0] == '4' || arr[i][0] == '2'){
       console.log(arr[i]);
     }
 }
@@ -20,7 +20,7 @@ console.log(arr);
 let n = 100;
 
 prime:
-for (let i = 1; i <= n; i++) { 
+for (let i = 2; i <= n; i++) { 
 
   for (let j = 2; j < i; j++) { //'1' не проходит и сразу идет в консоль
     if (i % j == 0) {
@@ -28,5 +28,5 @@ for (let i = 1; i <= n; i++) {
     }
   }
 
-  console.log(i);
+  console.log('Делители числа ' + i + ' - ' + i + ' и 1.');
 }
