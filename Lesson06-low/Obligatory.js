@@ -5,9 +5,8 @@ start = function() {
     do{
         money = +prompt('Ваш месячный доход?', 200000);
     }
-    while(isNaN(money) || money == '' || money == null);   
-    
-    return money;
+    while(isNaN(money) || money === '' || money === null);   
+    money = +money;
 };
 start();
 
@@ -29,49 +28,43 @@ let appData = {
                 'Курсы, отдых, приобретения');
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
-    }
+        
+            //цикл из getExpensesMonth
             
+            let amount, expense, sum = 0;
+
+            for (let i = 0; i < 2; i++) {
+                expense = prompt('Введите обязательную статью расходов', 'Расход' + (i+1));
+                do {
+                  amount = +prompt('Во сколько это обойдется?', 500);
+                }
+                  while (isNaN(amount) || amount === '' || amount === null);
+                  appData.expenses[expense] = +amount;
+                  sum += amount;
+              }
+          }         
 };
+
 appData.asking();
 
-//перенос цикла
-let expPerMonth1, expPerMonth2;
-
-appData.getExpensesMonth = function(){
+//for ... in (7)
+appData.getExpensesMonth = function() {
     
-    let sum = 0, 
-        howMuchExp;
-    
-for (let i = 0; i < 2; i++) {
-        if (i === 0){
-            expPerMonth1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 
-                'Налоги');
-        }
-
-        if (i === 1){
-            expPerMonth1 = prompt('Какие другие  обязательные ежемесячные расходы у вас есть?', 
-                'Еда');
-        }
-
-        do {
-            howMuchExp = prompt('Во сколько это обойдется?', 6500);
-        }
-        while (isNaN(howMuchExp) || howMuchExp === '' || howMuchExp === null);
-
-        sum += +howMuchExp;
+    let sum = 0;
+    for (let key in appData.expenses) {
+        sum += appData.expenses[key];
     }
-    return sum;    
+    return sum;
 };
 
+appData.expensesMonth = appData.getExpensesMonth();
 
-let expensesAmount = appData.getExpensesMonth();
-
-console.log('Расходы за месяц: ', expensesAmount);
+console.log('Расходы за месяц: ', appData.expensesMonth );
 
 //замена accumulatedMonth на appData.getAccumulatedMonth
 
 appData.getAccumulatedMonth = function getAccumulatedMonth(){    
-    return money - expensesAmount;
+    return money - appData.expensesMonth;
 };
 console.log('Накопления за месяц: ', appData.getAccumulatedMonth());
 
