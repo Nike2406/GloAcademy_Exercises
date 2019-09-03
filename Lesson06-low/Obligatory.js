@@ -1,16 +1,15 @@
 'use strict';
 
 let money, 
-    start = function(){
-    let money;
-
+start = function() {
     do{
-        money = prompt('Ваш месячный доход?', 200000);
+        money = +prompt('Ваш месячный доход?', 200000);
     }
-    while(isNaN(money) || money === '' || money === null);    
+    while(isNaN(money) || money == '' || money == null);   
+    
+    return money;
 };
-
-money = +start(); 
+start();
 
 let appData = {
     income: {}, 
@@ -24,7 +23,7 @@ let appData = {
     budgetDay: 0,
     budgetMonth: 0, 
     expensesMonth: 0,
-    asking: function(){
+    asking: function() {
         let addExpenses = prompt('Перечислите возможные ' + 
                 'расходы за рассчитываемый период через запятую', 
                 'Курсы, отдых, приобретения');
@@ -78,10 +77,10 @@ console.log('Накопления за месяц: ', appData.getAccumulatedMont
 
 //getTargetMonth
 
-appData.getTargetMonth = function getTargetMonth(){
+appData.getTargetMonth = function getTargetMonth() {
     return Math.floor(appData.mission / appData.getAccumulatedMonth());
 };
-if (appData.getTargetMonth() >= 0){
+if (appData.getTargetMonth() >= 0) {
     console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
         ' месяцев.');
  } else {
@@ -92,7 +91,7 @@ if (appData.getTargetMonth() >= 0){
 let budgetDay = Math.floor(appData.getAccumulatedMonth() / 30);
 
 
-appData.getStatusIncome = function(){
+appData.getStatusIncome = function() {
     if (budgetDay >= 800) {
         return ('Высокий уровень дохода');
     } else if (budgetDay >= 300 && budgetDay < 800){ 
