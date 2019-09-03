@@ -104,3 +104,4 @@ appData.getStatusIncome = function() {
 };
 
 console.log(appData.getStatusIncome());
+console.log(appData);
