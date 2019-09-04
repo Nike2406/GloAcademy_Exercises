@@ -68,21 +68,24 @@ let appData = {
         } else {
             return('Что-то пошло не так');
         }
+    },
+
+    getTargetGoal: function(){
+        if (appData.getTargetMonth() >= 0) {
+            console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
+                ' месяцев.');
+         } else {
+            console.log('Цель не будет достигнута');
+         }
     }
 };
 
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
+appData.getTargetGoal();
 
 console.log('Расходы за месяц: ', appData.expensesMonth );
-
-if (appData.getTargetMonth() >= 0) {
-    console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
-        ' месяцев.');
- } else {
-    console.log('Цель не будет достигнута');
- }
 
 console.log(appData.getStatusIncome());
 
