@@ -31,16 +31,15 @@ let appData = {
         
             //цикл из getExpensesMonth
             
-            let amount, expense, sum = 0;
+            let amount, expense = 0;
 
             for (let i = 0; i < 2; i++) {
                 expense = prompt('Введите обязательную статью расходов', 'Расход' + (i+1));
                 do {
-                  amount = +prompt('Во сколько это обойдется?', 5000);
+                  amount = prompt('Во сколько это обойдется?', 5000);
                 }
                   while (isNaN(amount) || amount === '' || amount === null);
                   appData.expenses[expense] = +amount;
-                  sum += amount;
               }
           },
     getExpensesMonth: function() {    
