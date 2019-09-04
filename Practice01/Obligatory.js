@@ -116,7 +116,16 @@ let appData = {
 
     calcSavedMoney: function() {
         return appData.budgetMonth * appData.period;
-    }          
+    },    
+    
+    getTargetGoal: function() {
+        if (appData.getTargetMonth() >= 0) {
+            console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
+                ' месяцев.');
+         } else {
+            console.log('Цель не будет достигнута');
+         }
+    }
 };
 
 appData.asking();
@@ -125,13 +134,6 @@ appData.getBudget();
 appData.getInfoDeposit();
 
 console.log('Расходы за месяц: ', appData.expensesMonth );
-
-if (appData.getTargetMonth() >= 0) {
-    console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
-        ' месяцев.');
- } else {
-    console.log('Цель не будет достигнута');
- }
 
 console.log(appData.getStatusIncome());
 
