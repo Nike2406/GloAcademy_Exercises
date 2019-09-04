@@ -42,11 +42,16 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные ' + 
+        let addExpenses;
+        do {
+            addExpenses= prompt('Перечислите возможные ' + 
                 'расходы за рассчитываемый период через запятую', 
                 'Курсы, отдых, приобретения');
-            appData.addExpenses = addExpenses.toLowerCase().split(', ');
-            appData.deposit = confirm('Есть ли у вас депозит в банке?');
+            }
+            while (addExpenses === '' || addExpenses === null || !isNaN(addExpenses));
+
+        appData.addExpenses = addExpenses.toLowerCase().split(', ');
+        appData.deposit = confirm('Есть ли у вас депозит в банке?');
         
             //цикл из getExpensesMonth
             
