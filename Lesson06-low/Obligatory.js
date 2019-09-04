@@ -70,7 +70,7 @@ let appData = {
         }
     },
 
-    getTargetGoal: function(){
+    getTargetGoal: function() {
         if (appData.getTargetMonth() >= 0) {
             console.log('Ваша цель будет достигнута через ' + appData.getTargetMonth() +
                 ' месяцев.');
