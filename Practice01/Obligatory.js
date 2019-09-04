@@ -42,13 +42,13 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses;
+        let addExpenses; 
         do {
-            addExpenses= prompt('Перечислите возможные ' + 
+            addExpenses = prompt('Перечислите возможные ' + 
                 'расходы за рассчитываемый период через запятую', 
                 'Курсы, отдых, приобретения');
-            }
-            while (addExpenses === '' || addExpenses === null || !isNaN(addExpenses));
+        }
+        while (addExpenses === '' || addExpenses === null || !isNaN(addExpenses));
 
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -137,6 +137,7 @@ appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getInfoDeposit();
+appData.getTargetGoal();
 
 console.log('Расходы за месяц: ', appData.expensesMonth );
 
@@ -157,4 +158,3 @@ console.log('Наша программа включает в себя данны
 for (let key in appData) {
     console.log(key + ':' + appData[key]);
 }
-console.log(appData);
