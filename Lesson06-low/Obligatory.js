@@ -3,7 +3,7 @@
 let money, 
 start = function() {
     do{
-        money = +prompt('Ваш месячный доход?', 200000);
+        money = prompt('Ваш месячный доход?', 200000);
     }
     while(isNaN(money) || money === '' || money === null);   
     money = +money;
