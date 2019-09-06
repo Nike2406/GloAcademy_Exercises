@@ -35,6 +35,7 @@ let volLiBook5 = document.querySelectorAll('.book:nth-child(5) li'),
 volUlBook5[0].insertBefore(volLiBook5[9], volLiBook5[2]);
 volUlBook5[0].insertBefore(volLiBook5[3], volLiBook5[2]);
 volUlBook5[0].insertBefore(volLiBook5[5], volLiBook5[8]);
+volUlBook5[0].insertBefore(volLiBook5[4], volLiBook5[2]);
 
 //Добавляем главу в 6й книге
 
