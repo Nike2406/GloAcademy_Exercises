@@ -47,8 +47,8 @@ let start = document.getElementById('start'),
 
             appData.budget = +salaryAmount.value;
 
-            appData.getBudget();
             appData.getExpenses();
+            appData.getBudget();
             appData.getExpensesMonth();
             appData.getTargetGoal();   
             appData.showResult(); 
@@ -96,12 +96,12 @@ let start = document.getElementById('start'),
             }
         },
 
-        getBudget: function getBudget() {    
+        getBudget: function() {    
             appData.budgetMonth = appData.budget - appData.expensesMonth;
-            appData.budgetDay = Math.floor(appData.budgetMonth / 30);    
+            appData.budgetDay = Math.floor(appData.budgetMonth / 30);   
         },
     
-        getTargetMonth: function getTargetMonth() {
+        getTargetMonth: function() {
             return Math.floor(appData.mission / appData.budgetMonth);
         },
     
@@ -129,12 +129,8 @@ let start = document.getElementById('start'),
 
     //обработчик события "рассчитать"
 
+    expensesPlus.addEventListener('click', appData.addExpensesBlock);
     start.addEventListener('click', appData.start);
 
-    expensesPlus.addEventListener('click', appData.addExpensesBlock);
        
-    // console.log('Наша программа включает в себя данные:');
-    // for (let key in appData) {
-    //     console.log(key + ':' + appData[key]);
-    // }
     
