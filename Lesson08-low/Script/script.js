@@ -19,10 +19,11 @@ let start = document.getElementById('start'),
     incomeTitle = document.querySelector('.income-title'),
     expensesTitle = document.querySelector('.expenses-title'),
     expensesItems = document.querySelectorAll('.expenses-items'),
+    incomeItems = document.querySelectorAll('.income-items'),
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
-    periodSelet = document.querySelector('.period-select'),
-    incomeItem = document.querySelectorAll('.income-itemss');
+    periodSelect = document.querySelector('.period-select'), //periodRange
+    periodAmount = document.querySelector('.period-amount'); //periodRangeOut
 
    
     let appData = {
@@ -49,6 +50,7 @@ let start = document.getElementById('start'),
             appData.getExpenses();
             appData.getIncome();
             appData.getExpensesMonth();
+            appData.getIncomeMonth(); //1. Добавили вызов для рассчета
             appData.getTargetGoal();   
             appData.getAddExpenses();
             appData.getAddIncome();
@@ -65,6 +67,11 @@ let start = document.getElementById('start'),
             additionalIncomeValue.value = appData.addIncome.join (', ');
             targetMonthValue.value = Math.ceil(appData.getTargetMonth());
             incomePeriodValue.value = appData.calcPeriod();
+        },
+
+        //4. Изменение range
+        getPeriodValue: function(event) {
+            periodAmount.innerHTML = event.target.value;
         },
 
         addExpensesBlock: function() {            
@@ -96,16 +103,24 @@ let start = document.getElementById('start'),
             });
         },
 
+        //1. getIncome
         getIncome: function() {
-            if (confirm('Есть ли у вас дополнительный доход?')) {
-                let itemIncome = prompt('Какой?', 'Преподование'),
-                    cashIncome = prompt('Сколько в месяц вы зарабатываете на нем?',
-                         1000);
-                appData.income[itemIncome] = +cashIncome;
-            }
+            incomeItems.forEach(function(item) {
+                let itemIncome = item.querySelector('.income-title').value,
+                    cashIncome = item.querySelector('.income-amount').value;
+                if (itemIncome !== '' && cashIncome !== '') {
+                    appData.income[itemIncome] = +cashIncome;
+                }
+            });
+        },
 
-            for (let key in appData.income) {
-                appData.incomeMonth += +appData.income[key];
+        //2. Добавляем блоки
+        addIncomeBlock: function() {
+            let cloneIncomeItems = incomeItems[0].cloneNode(true);
+            incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
+            incomeItems = document.querySelectorAll('.income-items');
+            if (incomeItems.length === 3) {
+                incomePlus.style.display = 'none';
             }
         },
 
@@ -124,9 +139,16 @@ let start = document.getElementById('start'),
             }
         },
 
+        //1. getIncomeMonth
+        getIncomeMonth: function() {
+            for (let key in appData.income) {
+                appData.incomeMonth += +appData.income[key];
+            }
+        },
+
         getBudget: function() {    
             appData.budgetMonth = appData.budget + appData.incomeMonth - appData.expensesMonth;
-            appData.budgetDay = Math.floor(appData.budgetMonth / 30); 
+            appData.budgetDay = Math.floor(appData.budgetMonth / 30); //3. Округлили в меньшу сторону
         },
     
         getTargetMonth: function() {
@@ -155,7 +177,7 @@ let start = document.getElementById('start'),
         },
         
         calcPeriod: function() {
-            return appData.budgetMonth * periodSelet.value;
+            return appData.budgetMonth * periodSelect.value;
         }
     };
 
@@ -163,7 +185,11 @@ let start = document.getElementById('start'),
 
     
     expensesPlus.addEventListener('click', appData.addExpensesBlock);
+    
+    //2. Добавляем блоки
+    incomePlus.addEventListener('click', appData.addIncomeBlock); 
     start.addEventListener('click', appData.start);
 
-       
+    //4. Изменение range
+    periodSelect.addEventListener('input', appData.getPeriodValue);
     
