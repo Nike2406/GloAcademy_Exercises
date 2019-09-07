@@ -47,6 +47,7 @@ let start = document.getElementById('start'),
 
             appData.budget = +salaryAmount.value;
 
+            appData.blockInput(); //6. Блокируем ввод
             appData.getExpenses();
             appData.getIncome();
             appData.getExpensesMonth();
@@ -65,15 +66,15 @@ let start = document.getElementById('start'),
             expensesMonthValue.value = appData.expensesMonth;
             additionalExpensesValue.value = appData.addExpenses.join (', ');
             additionalIncomeValue.value = appData.addIncome.join (', ');
-            targetMonthValue.value = Math.ceil(appData.getTargetMonth());
+            targetMonthValue.value = Math.ceil(appData.getTargetMonth());            
             incomePeriodValue.value = appData.calcPeriod();
-        },
 
-        //4. Изменение range
-        getPeriodValue: function(event) {
-            periodAmount.innerHTML = event.target.value;
+            //5. Обработчик события после рассчсета
+            periodSelect.addEventListener('input', function() {
+                incomePeriodValue.value = appData.calcPeriod();
+            });
         },
-
+        
         addExpensesBlock: function() {            
             let cloneExpensesItem = expensesItems[0].cloneNode(true);
             expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
@@ -178,6 +179,14 @@ let start = document.getElementById('start'),
         
         calcPeriod: function() {
             return appData.budgetMonth * periodSelect.value;
+        },
+
+        //6. Блокируем ввод
+        blockInput: function() { 
+            let elem = document.querySelectorAll('input[type=text]');
+            elem.forEach(function(item) {
+                item.setAttribute('disabled', 'true');
+            });
         }
     };
 
@@ -191,5 +200,6 @@ let start = document.getElementById('start'),
     start.addEventListener('click', appData.start);
 
     //4. Изменение range
-    periodSelect.addEventListener('input', appData.getPeriodValue);
-    
+    periodSelect.addEventListener('input', function() {
+             periodAmount.innerHTML = event.target.value;
+        });
