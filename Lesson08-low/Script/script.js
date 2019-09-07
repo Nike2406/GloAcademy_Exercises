@@ -39,15 +39,8 @@ let start = document.getElementById('start'),
         expensesMonth: 0,
 
         start: function() {
-             
-            if (salaryAmount.value === '') {
-                alert('Ошибка! Поле "Мясячный доход" должно быть заполнено.');
-                return;
-            }
-
             appData.budget = +salaryAmount.value;
 
-            appData.blockInput(); //6. Блокируем ввод
             appData.getExpenses();
             appData.getIncome();
             appData.getExpensesMonth();
@@ -58,6 +51,7 @@ let start = document.getElementById('start'),
             appData.getBudget();
 
             appData.showResult(); 
+            appData.blockInput(); //6. Блокируем ввод
         },
 
         showResult: function(){
@@ -190,8 +184,18 @@ let start = document.getElementById('start'),
         }
     };
 
-    //обработчик события "рассчитать"
+    //7. Блокирум кнопку
 
+    start.setAttribute('disabled', 'true');
+    salaryAmount.addEventListener('input', function() {
+        if (salaryAmount.value !== '') {
+            start.removeAttribute('disabled');
+        } else {
+            start.setAttribute('disabled', 'true');
+        }
+   });
+
+    //обработчик события "рассчитать"
     
     expensesPlus.addEventListener('click', appData.addExpensesBlock);
     
