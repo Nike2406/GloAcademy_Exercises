@@ -52,14 +52,17 @@ let start = document.getElementById('start'),
             appData.getExpensesMonth();
             appData.getTargetGoal();   
             appData.showResult(); 
+
+            console.log(expensesMonthValue.value);
+            console.log(appData.ExpensesMonth);
         },
 
         showResult: function(){
             budgetMonthValue.value = appData.budgetMonth;
             budgetDayValue.value = appData.budgetDay;
             expensesMonthValue.value = appData.ExpensesMonth;
-            // console.log(expensesMonthValue.value);
-            // console.log(appData.ExpensesMonth);
+            console.log(expensesMonthValue.value);
+            console.log(appData.ExpensesMonth);
         },
 
         addExpensesBlock: function() {            
@@ -79,6 +82,7 @@ let start = document.getElementById('start'),
                     appData.expenses[itemExpenses] = +cashExpenses;
                 }
             });
+            console.log('appData.expenses: ', appData.expenses);
         },
 
         // asking: function() {
@@ -98,7 +102,10 @@ let start = document.getElementById('start'),
 
         getBudget: function() {    
             appData.budgetMonth = appData.budget - appData.expensesMonth;
-            appData.budgetDay = Math.floor(appData.budgetMonth / 30);   
+            appData.budgetDay = Math.floor(appData.budgetMonth / 30); 
+            
+            console.log('appData.budgetMonth: ', appData.budgetMonth);
+            console.log('appData.budgetDay: ', appData.budgetDay);
         },
     
         getTargetMonth: function() {
@@ -129,6 +136,7 @@ let start = document.getElementById('start'),
 
     //обработчик события "рассчитать"
 
+    
     expensesPlus.addEventListener('click', appData.addExpensesBlock);
     start.addEventListener('click', appData.start);
 
