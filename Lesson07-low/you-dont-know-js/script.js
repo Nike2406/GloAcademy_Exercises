@@ -46,3 +46,8 @@ let volLiBook6 = document.querySelectorAll('.book:nth-child(6) li'),
 newVol6.textContent = 'Глава 8: За пределами ES6';
 volUlBook6[0].appendChild(newVol6);
 volUlBook6[0].insertBefore(volLiBook6[9], null);
+
+//исправляем опечатку
+
+let changeVol3 = document.getElementsByTagName('a');
+changeVol3[2].innerHTML = 'Книга 3. this и Прототипы Объектов';
