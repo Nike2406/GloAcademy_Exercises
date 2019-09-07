@@ -73,6 +73,7 @@ let start = document.getElementById('start'),
             let cloneExpensesItem = expensesItems[0].cloneNode(true);
             expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
             expensesItems = document.querySelectorAll('.expenses-items');
+            
             if (expensesItems.length === 3) {
                 expensesPlus.style.display = 'none';
             }
@@ -103,6 +104,7 @@ let start = document.getElementById('start'),
             incomeItems.forEach(function(item) {
                 let itemIncome = item.querySelector('.income-title').value,
                     cashIncome = item.querySelector('.income-amount').value;
+                    
                 if (itemIncome !== '' && cashIncome !== '') {
                     appData.income[itemIncome] = +cashIncome;
                 }
@@ -114,6 +116,7 @@ let start = document.getElementById('start'),
             let cloneIncomeItems = incomeItems[0].cloneNode(true);
             incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
             incomeItems = document.querySelectorAll('.income-items');
+
             if (incomeItems.length === 3) {
                 incomePlus.style.display = 'none';
             }
@@ -141,9 +144,10 @@ let start = document.getElementById('start'),
             }
         },
 
+        //3. Округлили в меньшу сторону
         getBudget: function() {    
             appData.budgetMonth = appData.budget + appData.incomeMonth - appData.expensesMonth;
-            appData.budgetDay = Math.floor(appData.budgetMonth / 30); //3. Округлили в меньшу сторону
+            appData.budgetDay = Math.floor(appData.budgetMonth / 30); 
         },
     
         getTargetMonth: function() {
@@ -206,4 +210,4 @@ let start = document.getElementById('start'),
     //4. Изменение range
     periodSelect.addEventListener('input', function() {
              periodAmount.innerHTML = event.target.value;
-        });
+    });
