@@ -188,8 +188,6 @@ let start = document.getElementById('start'),
 
         //4. Ресет!
         cancel: function() {
-            // appData = null;
-            console.log('click');
             document.location.reload(true);
         }
     };
