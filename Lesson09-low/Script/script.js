@@ -39,7 +39,18 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
 
+    blockStart: function () {
+        if (salaryAmount.value !== '') {
+            start.removeAttribute('disabled');
+        }
+    },
+
     start: function () {
+        if (salaryAmount.value === '') {
+            start.setAttribute('disabled', 'true');
+            return;
+        }
+
         this.budget = +salaryAmount.value;
 
         this.getExpenses();
@@ -193,11 +204,13 @@ let appData = {
         this.addIncome = [];
         this.expenses = {};
         this.addExpenses = [];
-        this.deposit = false;
         this.budget = 0;
         this.budgetDay = 0;
         this.budgetMonth = 0;
-        this.expensesMonth =0;
+        this.expensesMonth = 0;
+        this.deposit = false; //нет в программе
+        this.percentDeposit = 0; //нет в программе
+        this.moneyDeposit = 0; //нет в программе
 
         let delIncomeBtns = document.querySelectorAll('.income-items');
         for (let i = 1; i <= delIncomeBtns.length - 1; i++) {
@@ -214,33 +227,20 @@ let appData = {
             item.removeAttribute('disabled');
         });
 
-        reset.style.display = 'none';
-        start.style.display = 'inline-block';
-
         let delData = document.querySelectorAll('input[type=text]');
         delData.forEach(function (item) {
             item.value = '';
         });
-        periodSelect.value = 0;
+        periodSelect.value = '0';
         periodAmount.innerHTML = periodSelect.value;
 
-        appData.blockStart();
-    },
-
-    blockStart: function () {
-        start.setAttribute('disabled', 'true');
-        salaryAmount.addEventListener('input', function () {
-            if (salaryAmount.value !== '') {
-                start.removeAttribute('disabled');
-            } else {
-                start.setAttribute('disabled', 'true');
-            }
-        });
+        reset.style.display = 'none';
+        start.style.display = 'inline-block';        
     }
 };
 
 
-salaryAmount.addEventListener('input', appData.blockStart());
+salaryAmount.addEventListener('input', appData.blockStart);
 
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
