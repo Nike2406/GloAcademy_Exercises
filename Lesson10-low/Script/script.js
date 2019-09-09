@@ -229,6 +229,9 @@ AppData.prototype.reset = function () {
         item.removeAttribute('disabled');
     });
 
+    incomePlus.style.display = 'inline-block';
+    expensesPlus.style.display = 'inline-block';
+
     reset.style.display = 'none';
     start.style.display = 'inline-block';
 
@@ -241,28 +244,25 @@ AppData.prototype.reset = function () {
 };
 
 AppData.prototype.eventListeners = function () {    //перенести все навешивания событий    
+    salaryAmount.addEventListener('input', appData.blockStart());
 
+
+    expensesPlus.addEventListener('click', appData.addExpensesBlock);
+    
+    incomePlus.addEventListener('click', appData.addIncomeBlock);
+    
+    start.addEventListener('click', appData.start.bind(appData));
+    reset.addEventListener('click', appData.reset.bind(appData));
+    
+    reset.addEventListener('click', appData.reset);
+    
+    periodSelect.addEventListener('input', function () {
+        periodAmount.innerHTML = event.target.value;
+    });
 };    
 
 const appData = new AppData();
     console.log(appData);
-
-
     
 
 
-salaryAmount.addEventListener('input', appData.blockStart());
-
-
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
-
-incomePlus.addEventListener('click', appData.addIncomeBlock);
-
-start.addEventListener('click', appData.start.bind(appData));
-reset.addEventListener('click', appData.reset.bind(appData));
-
-reset.addEventListener('click', appData.reset);
-
-periodSelect.addEventListener('input', function () {
-    periodAmount.innerHTML = event.target.value;
-});
