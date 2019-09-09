@@ -249,6 +249,7 @@ incomePlus.addEventListener('click', appData.addIncomeBlock);
 
 //1. appData to start
 start.addEventListener('click', appData.start.bind(appData));
+reset.addEventListener('click', appData.reset.bind(appData));
 
 reset.addEventListener('click', appData.reset);
 
