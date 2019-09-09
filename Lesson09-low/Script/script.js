@@ -234,6 +234,9 @@ let appData = {
         periodSelect.value = '0';
         periodAmount.innerHTML = periodSelect.value;
 
+        incomePlus.style.display = 'inline-block';
+        expensesPlus.style.display = 'inline-block';
+
         reset.style.display = 'none';
         start.style.display = 'inline-block';        
     }
