@@ -244,17 +244,17 @@ AppData.prototype.reset = function () {
 };
 
 AppData.prototype.eventListeners = function () {    //перенести все навешивания событий    
-    salaryAmount.addEventListener('input', appData.blockStart());
+    salaryAmount.addEventListener('input', this.blockStart);
 
 
-    expensesPlus.addEventListener('click', appData.addExpensesBlock);
+    expensesPlus.addEventListener('click', this.addExpensesBlock);
     
-    incomePlus.addEventListener('click', appData.addIncomeBlock);
+    incomePlus.addEventListener('click', this.addIncomeBlock);
     
-    start.addEventListener('click', appData.start.bind(appData));
-    reset.addEventListener('click', appData.reset.bind(appData));
+    start.addEventListener('click', this.start.bind(this));
+    reset.addEventListener('click', this.reset.bind(this));
     
-    reset.addEventListener('click', appData.reset);
+    reset.addEventListener('click', this.reset);
     
     periodSelect.addEventListener('input', function () {
         periodAmount.innerHTML = event.target.value;
@@ -262,7 +262,6 @@ AppData.prototype.eventListeners = function () {    //перенести все 
 };    
 
 const appData = new AppData();
-    console.log(appData);
-    
+appData.eventListeners();
 
 
