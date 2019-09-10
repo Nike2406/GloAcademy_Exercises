@@ -23,14 +23,14 @@ DomElement.prototype.addSel = function () {
     }
 };
 
-let elem = new DomElement('#Hello', '100', '100', 'red', '24px');
+let elem = new DomElement('#Hello', '100', '100', 'red', '24');
 elem.addSel();
 
 let cssElem = document.getElementsByClassName((`${elem.selector}`).slice(1, (`${elem.selector}`).length))[0];
 
-cssElem.style.cssText = `height: ${elem.height}; width: ${elem.width}; 
- background-color: ${elem.bg}; font-size: ${elem.fontSize}`;
+cssElem.style.cssText = `height: ${elem.height}px; width: ${elem.width}px; 
+ background-color: ${elem.bg}; font-size: ${elem.fontSize}px`;
  
- let newElem = new DomElement('.Bye', '200', '200', 'green', '36px'); //новый элемент
+ let newElem = new DomElement('.Bye', '200', '200', 'green', '36'); //новый элемент
  console.log('newElem: ', newElem); 
  newElem.addSel(); //вызывем метод класса
