@@ -74,7 +74,6 @@ AppData.prototype.start = function () {
 };
 
 AppData.prototype.showResult = function () {
-    const _this = this;
     budgetMonthValue.value = this.budgetMonth;
     budgetDayValue.value = this.budgetDay;
     expensesMonthValue.value = this.expensesMonth;
@@ -83,13 +82,16 @@ AppData.prototype.showResult = function () {
     targetMonthValue.value = Math.ceil(this.getTargetMonth());
     incomePeriodValue.value = this.calcPeriod();
 
-    periodSelect.addEventListener('input', function () {
-        incomePeriodValue.value = _this.calcPeriod();
+    periodSelect.addEventListener('input', () => { //
+        incomePeriodValue.value = this.calcPeriod();
     });
 };
 
 AppData.prototype.addExpensesBlock = function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
+    cloneExpensesItem.querySelectorAll('input').forEach(function (item) { // убираем value
+        item.value = '';
+    });
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
     expensesItems = document.querySelectorAll('.expenses-items');
 
@@ -98,13 +100,36 @@ AppData.prototype.addExpensesBlock = function () {
     }
 };
 
+AppData.prototype.addIncomeBlock = function () {
+    let cloneIncomeItems = incomeItems[0].cloneNode(true);
+    cloneIncomeItems.querySelectorAll('input').forEach(function (item) {    // убираем value
+        item.value = '';
+    });
+    incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
+    incomeItems = document.querySelectorAll('.income-items');
+
+    if (incomeItems.length >= 3) {
+        incomePlus.style.display = 'none';
+    }
+};
+
 AppData.prototype.getExpenses = function () {
-    const _this = this;
-    expensesItems.forEach(function (item) {
+    expensesItems.forEach((item) => {
         let itemExpenses = item.querySelector('.expenses-title').value,
             cashExpenses = item.querySelector('.expenses-amount').value;
         if (itemExpenses !== '' && cashExpenses !== '') {
-            _this.expenses[itemExpenses] = +cashExpenses;
+            this.expenses[itemExpenses] = +cashExpenses;
+        }
+    });
+};
+
+AppData.prototype.getIncome = function () {
+    incomeItems.forEach((item) => {
+        let itemIncome = item.querySelector('.income-title').value,
+            cashIncome = item.querySelector('.income-amount').value;
+
+        if (itemIncome !== '' && cashIncome !== '') {
+            this.income[itemIncome] = +cashIncome;
         }
     });
 };
@@ -119,34 +144,11 @@ AppData.prototype.getAddExpenses = function () {
     });
 };
 
-AppData.prototype.getIncome = function () {
-    const _this = this;
-    incomeItems.forEach(function (item) {
-        let itemIncome = item.querySelector('.income-title').value,
-            cashIncome = item.querySelector('.income-amount').value;
-
-        if (itemIncome !== '' && cashIncome !== '') {
-            _this.income[itemIncome] = +cashIncome;
-        }
-    });
-};
-
-AppData.prototype.addIncomeBlock = function () {
-    let cloneIncomeItems = incomeItems[0].cloneNode(true);
-    incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
-    incomeItems = document.querySelectorAll('.income-items');
-
-    if (incomeItems.length === 3) {
-        incomePlus.style.display = 'none';
-    }
-};
-
 AppData.prototype.getAddIncome = function () {
-    const _this = this;
-    additionalIncomeItem.forEach(function (item) {
+    additionalIncomeItem.forEach((item) => {
         let itemValue = item.value.trim();
         if (itemValue !== '') {
-            _this.addIncome.push(itemValue);
+            this.addIncome.push(itemValue);
         }
     });
 };
@@ -216,6 +218,7 @@ AppData.prototype.blockInput = function () {
     reset.style.display = 'inline-block';
     
     depositeCheck.setAttribute('disabled', 'true');
+    depositBank.setAttribute('disabled', 'true');
 };
 
 AppData.prototype.reset = function () {
@@ -258,8 +261,9 @@ AppData.prototype.reset = function () {
     periodSelect.value = 0;
     periodAmount.innerHTML = periodSelect.value;
     
+    depositBank.removeAttribute('disabled');
     depositeCheck.removeAttribute('disabled');
-    depositeCheck.removeAttribute('checked'); //попытка убрать галку
+    depositeCheck.checked = false; //попытка убрать галку
 };
 
 AppData.prototype.eventListeners = function () {    
