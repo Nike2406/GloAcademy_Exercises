@@ -122,8 +122,9 @@ AppData.prototype.getIncome = function () {
     });
 };
 
+//mark
 AppData.prototype.getAddExpenses = function () {
-    let addExpenses = additionalExpensesItem.value.split(',');
+    const addExpenses = additionalExpensesItem.value.split(',');
     addExpenses.forEach((item) => {
         item = item.trim();
         if (item !== '') {
@@ -141,14 +142,14 @@ AppData.prototype.getAddIncome = function () {
     });
 };
 
-AppData.prototype.getAdditional = function(additional) {
-    additional.forEach((item) => {
-        if (item !== '') {
-            item = item.trim();
-            this.additional.push(item);
-        }
-    });
-};
+// AppData.prototype.getAdditional = function (additional) {
+//     additional.forEach((item) => {
+//         if (item !== '') {
+//             item = item.trim();
+//             this.additional.push(item);
+//         }
+//     });
+// };
 
 //депозит
 AppData.prototype.getInfoDeposit = function () {
