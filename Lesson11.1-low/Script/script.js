@@ -7,6 +7,7 @@ let start = document.getElementById('start'),
     expensesPlus = btnPlus[1],
     depositeCheck = document.querySelector('#deposit-check'),
     additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
+    btnTarget, btnPlusTarget,
 
     budgetDayValue = document.querySelector('.budget_day-value'),
     budgetMonthValue = document.querySelector('.budget_month-value'),
@@ -88,15 +89,15 @@ AppData.prototype.showResult = function () {
 };
 
 AppData.prototype.addBlock = function (btnTarget, btnPlusTarget) {
-    let cloneItem = btnTarget[0].cloneNode(true);
+    let cloneItem = btnPlusTarget[0].cloneNode(true);
     cloneItem.querySelectorAll('input').forEach(function (item) { // убираем value
         item.value = '';
     });
-    btnTarget[0].parentNode.insertBefore(cloneItem, btnPlusTarget);
-    btnTarget = document.querySelectorAll('.expenses-items');
+    btnPlusTarget[0].parentNode.insertBefore(cloneItem, btnTarget);
+    btnPlusTarget = document.querySelectorAll('.expenses-items');
 
-    if (btnTarget.length >= 3) {
-        btnPlusTarget.style.display = 'none';
+    if (btnPlusTarget.length >= 3) {
+        btnTarget.style.display = 'none';
     }
 };
 
@@ -285,11 +286,11 @@ AppData.prototype.eventListeners = function () {
 
     expensesPlus.addEventListener('click', this.addExpensesBlock);
     
-    incomePlus.addEventListener('click', (event) => {
+    incomePlus.onclick = (event) => {
         console.log((event.target));
         console.log(event.target.parentNode.children[1]);
         this.addBlock(event.target, event.target.parentNode.children[1]);      
-        });
+        };
 
     
     start.addEventListener('click', this.start.bind(this));
