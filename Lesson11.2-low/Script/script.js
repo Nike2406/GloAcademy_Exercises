@@ -123,33 +123,32 @@ AppData.prototype.getIncome = function () {
 };
 
 //mark
-AppData.prototype.getAddExpenses = function () {
-    const addExpenses = additionalExpensesItem.value.split(',');
-    addExpenses.forEach((item) => {
-        item = item.trim();
-        if (item !== '') {
-            this.addExpenses.push(item);
+AppData.prototype.getAdditional = function (items, expTab) {
+    if (typeof (items.value) === 'string') {
+        items = items.value.split(',');
+    }
+
+    items.forEach(function (item) {
+        if (typeof item == "string") {
+            item = item.trim();
+        } else {
+            item = item.value;
+        }
+
+        if (item !== ''){
+            expTab.push(item);
         }
     });
+};
+
+
+AppData.prototype.getAddExpenses = function () {
+    this.getAdditional(additionalExpensesItem, this.addExpenses);
 };
 
 AppData.prototype.getAddIncome = function () {
-    additionalIncomeItem.forEach((item) => {
-        let itemValue = item.value.trim();
-        if (itemValue !== '') {
-            this.addIncome.push(itemValue);
-        }
-    });
+    this.getAdditional(additionalIncomeItem, this.addIncome);
 };
-
-// AppData.prototype.getAdditional = function (additional) {
-//     additional.forEach((item) => {
-//         if (item !== '') {
-//             item = item.trim();
-//             this.additional.push(item);
-//         }
-//     });
-// };
 
 //депозит
 AppData.prototype.getInfoDeposit = function () {
