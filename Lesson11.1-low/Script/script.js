@@ -87,6 +87,19 @@ AppData.prototype.showResult = function () {
     });
 };
 
+AppData.prototype.addBlock = function (btnTarget, btnPlusTarget) {
+    let cloneItem = btnTarget[0].cloneNode(true);
+    cloneItem.querySelectorAll('input').forEach(function (item) { // убираем value
+        item.value = '';
+    });
+    btnTarget[0].parentNode.insertBefore(cloneItem, btnPlusTarget);
+    btnTarget = document.querySelectorAll('.expenses-items');
+
+    if (btnTarget.length >= 3) {
+        btnPlusTarget.style.display = 'none';
+    }
+};
+
 AppData.prototype.addExpensesBlock = function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
     cloneExpensesItem.querySelectorAll('input').forEach(function (item) { // убираем value
@@ -100,18 +113,18 @@ AppData.prototype.addExpensesBlock = function () {
     }
 };
 
-AppData.prototype.addIncomeBlock = function () {
-    let cloneIncomeItems = incomeItems[0].cloneNode(true);
-    cloneIncomeItems.querySelectorAll('input').forEach(function (item) {    // убираем value
-        item.value = '';
-    });
-    incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
-    incomeItems = document.querySelectorAll('.income-items');
+// AppData.prototype.addIncomeBlock = function () {
+//     let cloneIncomeItems = incomeItems[0].cloneNode(true);
+//     cloneIncomeItems.querySelectorAll('input').forEach(function (item) {    // убираем value
+//         item.value = '';
+//     });
+//     incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
+//     incomeItems = document.querySelectorAll('.income-items');
 
-    if (incomeItems.length >= 3) {
-        incomePlus.style.display = 'none';
-    }
-};
+//     if (incomeItems.length >= 3) {
+//         incomePlus.style.display = 'none';
+//     }
+// };
 
 AppData.prototype.getExpenses = function () {
     expensesItems.forEach((item) => {
@@ -272,7 +285,12 @@ AppData.prototype.eventListeners = function () {
 
     expensesPlus.addEventListener('click', this.addExpensesBlock);
     
-    incomePlus.addEventListener('click', this.addIncomeBlock);
+    incomePlus.addEventListener('click', (event) => {
+        console.log((event.target));
+        console.log(event.target.parentNode.children[1]);
+        this.addBlock(event.target, event.target.parentNode.children[1]);      
+        });
+
     
     start.addEventListener('click', this.start.bind(this));
     reset.addEventListener('click', this.reset.bind(this));
@@ -312,5 +330,4 @@ AppData.prototype.eventListeners = function () {
 
 const appData = new AppData();
 appData.eventListeners();
-
 
