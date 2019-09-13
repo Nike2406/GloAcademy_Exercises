@@ -89,7 +89,7 @@ AppData.prototype.showResult = function () {
 };
 
 AppData.prototype.addBlock = function (btnTarget, btnPlusTarget) {
-    let cloneItem = btnPlusTarget[0].cloneNode(true);
+    let cloneItem = btnPlusTarget.cloneNode(true);
     cloneItem.querySelectorAll('input').forEach(function (item) { // убираем value
         item.value = '';
     });
@@ -106,6 +106,7 @@ AppData.prototype.addExpensesBlock = function () {
     cloneExpensesItem.querySelectorAll('input').forEach(function (item) { // убираем value
         item.value = '';
     });
+    console.log(expensesItems);
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
     expensesItems = document.querySelectorAll('.expenses-items');
 
@@ -286,11 +287,14 @@ AppData.prototype.eventListeners = function () {
 
     expensesPlus.addEventListener('click', this.addExpensesBlock);
     
-    incomePlus.onclick = (event) => {
-        console.log((event.target));
-        console.log(event.target.parentNode.children[1]);
-        this.addBlock(event.target, event.target.parentNode.children[1]);      
-        };
+    incomePlus.addEventListener('click', (event) => {
+        // console.log('incomeItems: ', incomeItems);
+        
+        // console.log(incomePlus);
+        this.addBlock(incomePlus, incomeItems); 
+             
+        }
+    );
 
     
     start.addEventListener('click', this.start.bind(this));
