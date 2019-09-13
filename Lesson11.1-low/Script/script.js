@@ -150,15 +150,6 @@ AppData.prototype.getAddIncome = function () {
     this.getAdditional(additionalIncomeItem, this.addIncome);
 };
 
-// AppData.prototype.getAdditional = function (additional) {
-//     additional.forEach((item) => {
-//         if (item !== '') {
-//             item = item.trim();
-//             this.additional.push(item);
-//         }
-//     });
-// };
-
 //депозит
 AppData.prototype.getInfoDeposit = function () {
     if (this.deposit) {
