@@ -122,7 +122,7 @@ getIncome() {
             this.income[itemIncome] = +cashIncome;
         }
     });
-};
+}
 
 //mark
 getAdditional(items, expTab) {
@@ -170,7 +170,7 @@ getIncomeMonth() {
     for (let key in this.income) {
         this.incomeMonth += +this.income[key];
     }
-};
+}
 
 getBudget() {
     this.budgetMonth = this.budget + this.incomeMonth - 
