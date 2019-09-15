@@ -19,7 +19,7 @@ function getweekTime() {
 
 function getTimeNow() {
     timeItem.textContent = `Текущее время:
-     ${plusZero(date.getHours())}${(date.toLocaleTimeString('en')).slice(1)}`;
+     ${plusZero(date.getHours())}${(date.toLocaleTimeString('en')).slice(date.toLocaleTimeString('en').length - 9)}`;
 }
 
 
