@@ -7,7 +7,6 @@ let start = document.getElementById('start'),
     expensesPlus = btnPlus[1],
     depositeCheck = document.querySelector('#deposit-check'),
     additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
-    btnTarget, btnPlusTarget,
 
     budgetDayValue = document.querySelector('.budget_day-value'),
     budgetMonthValue = document.querySelector('.budget_month-value'),
@@ -106,12 +105,12 @@ addBlock(btnPlus, targetItems) {
 getExpenses () {
     expensesItems = document.querySelectorAll('.income-items');
     for (let item of expensesItems)  {
-        let itemExpenses = item.querySelector('.income-title').value,
-        cashExpenses = item.querySelector('.income-amount').value;
+        let itemExpenses = item.querySelector('.expenses-title').value,
+            cashExpenses = item.querySelector('.expenses-amount').value;
         if (itemExpenses !== '' && cashExpenses !== '') {
-            this.income[itemExpenses] = +cashExpenses;
+            this.expenses[itemExpenses] = +cashExpenses;
         }
-    }    
+    }     
 }
 
 getIncome () {

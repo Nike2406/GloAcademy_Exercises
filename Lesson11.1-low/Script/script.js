@@ -102,12 +102,12 @@ AppData.prototype.addBlock = function (btnPlus, targetItems) {
 };
 
 AppData.prototype.getExpenses = function () {
-    expensesItems = document.querySelectorAll('.income-items');
+    expensesItems = document.querySelectorAll('.expenses-items');
     for (let item of expensesItems)  {
-        let itemExpenses = item.querySelector('.income-title').value,
-        cashExpenses = item.querySelector('.income-amount').value;
+        let itemExpenses = item.querySelector('.expenses-title').value,
+            cashExpenses = item.querySelector('.expenses-amount').value;
         if (itemExpenses !== '' && cashExpenses !== '') {
-            this.income[itemExpenses] = +cashExpenses;
+            this.expenses[itemExpenses] = +cashExpenses;
         }
     }    
 };
