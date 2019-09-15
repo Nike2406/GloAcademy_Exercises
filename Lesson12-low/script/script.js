@@ -20,26 +20,32 @@ window.addEventListener('DOMContentLoaded',function () {
             };
         }
 
-        //mark
+        function plusZero(num) {
+            if (num > 0 && num < 10) { 
+                return '0' + num;
+            } else if (num == 0) {
+                return '00';
+            } else {
+                return num;
+            }
+        }
+
         
         function updateClock() {
             let timer = getTimeRemaining();
             
-            timerHours.textContent = timer.houres;
-            timerMinutes.textContent = timer.minutes;
-            timerSeconds.textContent = timer.seconds;
-
-            if (timer.timeRemaining > 0) {
-                setTimeout(updateClock, 1000);
-            } 
+            if (timer.timeRemaining >= 0) {
+            timerHours.textContent = plusZero(timer.houres);
+            timerMinutes.textContent = plusZero(timer.minutes);
+            timerSeconds.textContent = plusZero(timer.seconds);
+            } else {
+                clearInterval(idInterval);
+            }
+            
         }
-let idTimer = updateClock();
-
-        updateClock();
+        let idInterval = setInterval(updateClock, 1000);
     }
 
-    countTimer('9 15 2019 00:40:30');
+    countTimer('9 15 2019 15:07:20');
 
 });
-
-setTimeout(() => {console.log(1);}, 5000);
