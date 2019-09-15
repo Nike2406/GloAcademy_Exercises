@@ -11,19 +11,29 @@ const helloItem = document.querySelector('.hello-item'),
     hours = date.getHours(),
     dateStop = new Date('01 01 2020').getTime();    
 
-function getweekTime() {
+let getweekTime = () => {
     const weekDays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг',  
     'Пятница', 'Суббота'];
     todayItem.textContent = `Сегодня: ${weekDays[date.getDay()]}`;
-}
+},
 
-function getTimeNow() {
+plusZero = (num) => {
+    if (num > 0 && num < 10) { 
+        return '0' + num;
+    } else if (num == 0) {
+        return '00';
+    } else {
+        return num;
+    }
+},
+
+getTimeNow = () => {
     timeItem.textContent = `Текущее время:
      ${plusZero(date.getHours())}${(date.toLocaleTimeString('en')).slice(date.toLocaleTimeString('en').length - 9)}`;
-}
+},
 
 
-function getDayTime() {
+getDayTime = () => {
     if (hours >= 0 && hours < 4) {
         helloItem.textContent = 'Доброй ночи';
     } else if (hours >= 4 && hours < 12) {
@@ -33,23 +43,15 @@ function getDayTime() {
     } else if (hours >= 18 && hours < 24) {
         helloItem.textContent = 'Добрый вечер';
     }
-}
+},
 
-function plusZero(num) {
-    if (num > 0 && num < 10) { 
-        return '0' + num;
-    } else if (num == 0) {
-        return '00';
-    } else {
-        return num;
-    }
-}
 
-function getTimeRemain() {
+
+getTimeRemain = () => {
      let timeRemaining = Math.floor(((dateStop - date.getTime()) / 1000) / 60 / 60/ 24);
 
     remainItem.textContent = `До нового года осталось ${timeRemaining} дней`;
-}
+};
 
 getDayTime();
 getweekTime();
