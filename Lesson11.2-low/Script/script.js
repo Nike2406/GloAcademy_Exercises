@@ -106,7 +106,7 @@ addBlock(btnPlus, targetItems) {
 }
 
 getExpenses () {
-    expensesItems = document.querySelectorAll('.income-items');
+    expensesItems = document.querySelectorAll('.expenses-items');
     for (let item of expensesItems)  {
         let itemExpenses = item.querySelector('.expenses-title').value,
             cashExpenses = item.querySelector('.expenses-amount').value;
