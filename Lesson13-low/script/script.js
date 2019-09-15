@@ -3,12 +3,12 @@ window.addEventListener('DOMContentLoaded',function () {
     'use strict';
     
     //Timer
-    function countTimer (deadline) {
+    let countTimer = (deadline) => {
         let timerHours = document.querySelector('#timer-hours'),
             timerMinutes = document.querySelector('#timer-minutes'),
-            timerSeconds = document.querySelector('#timer-seconds');
+            timerSeconds = document.querySelector('#timer-seconds'),
 
-        function getTimeRemaining () {
+        getTimeRemaining = () => {
             let dateStop = new Date(deadline).getTime(),
             dateNow = new Date().getTime(),
             timeRemaining = Math.floor((dateStop - dateNow) / 1000),
@@ -18,9 +18,9 @@ window.addEventListener('DOMContentLoaded',function () {
             return {
                 timeRemaining, houres, minutes, seconds
             };
-        }
+        },
 
-        function plusZero(num) {
+        plusZero = (num) => {
             if (num > 0 && num < 10) { 
                 return '0' + num;
             } else if (num == 0) {
@@ -28,9 +28,9 @@ window.addEventListener('DOMContentLoaded',function () {
             } else {
                 return num;
             }
-        }
+        },
 
-        function updateClock() {
+        updateClock = () => {
             let timer = getTimeRemaining();
             
             if (timer.timeRemaining >= 0) {
@@ -41,10 +41,11 @@ window.addEventListener('DOMContentLoaded',function () {
                 clearInterval(idInterval);
             }
             
-        }
-        let idInterval = setInterval(updateClock, 1000);
-    }
+        },
 
-    countTimer('9 15 2019 15:07:20');
+        idInterval = setInterval(updateClock, 1000);
+    };
+
+    countTimer('9 16 2019 00:08:40');
 
 });
