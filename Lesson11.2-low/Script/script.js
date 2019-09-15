@@ -1,6 +1,6 @@
 'use strict';
 
-let start = document.getElementById('start'),
+const start = document.getElementById('start'),
     reset = document.getElementById('cancel'),
     btnPlus = document.getElementsByTagName('button'),
     incomePlus = btnPlus[0],
@@ -15,12 +15,10 @@ let start = document.getElementById('start'),
     additionalExpensesValue = document.querySelector('.additional_expenses-value'),
     incomePeriodValue = document.querySelector('.income_period-value'),
     targetMonthValue = document.querySelector('.target_month-value'),
-
     salaryAmount = document.querySelector('.salary-amount'),
     incomeTitle = document.querySelector('.income-title'),
     expensesTitle = document.querySelector('.expenses-title'),
-    expensesItems = document.querySelectorAll('.expenses-items'),
-    incomeItems = document.querySelectorAll('.income-items'),
+    
     additionalExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'), //periodRange
@@ -29,6 +27,11 @@ let start = document.getElementById('start'),
     depositBank = document.querySelector('.deposit-bank'),
     depositAmount = document.querySelector('.deposit-amount'),
     depositPercent = document.querySelector('.deposit-percent');
+
+let incomeItems = document.querySelectorAll('.income-items'),
+    expensesItems = document.querySelectorAll('.expenses-items');
+
+
 
 class AppData {
 
