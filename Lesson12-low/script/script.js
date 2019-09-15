@@ -33,11 +33,12 @@ window.addEventListener('DOMContentLoaded',function () {
                 setTimeout(updateClock, 1000);
             } 
         }
+let idTimer = updateClock();
 
         updateClock();
     }
 
-    countTimer('9 14 2019 23:54:0');
+    countTimer('9 15 2019 00:40:30');
 
 });
 
