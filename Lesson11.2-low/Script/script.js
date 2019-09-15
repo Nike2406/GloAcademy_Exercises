@@ -103,25 +103,26 @@ addBlock(btnPlus, targetItems) {
     }
 }
 
-getExpenses() {
-    expensesItems.forEach((item) => {
-        let itemExpenses = item.querySelector('.expenses-title').value,
-            cashExpenses = item.querySelector('.expenses-amount').value;
+getExpenses () {
+    expensesItems = document.querySelectorAll('.income-items');
+    for (let item of expensesItems)  {
+        let itemExpenses = item.querySelector('.income-title').value,
+        cashExpenses = item.querySelector('.income-amount').value;
         if (itemExpenses !== '' && cashExpenses !== '') {
-            this.expenses[itemExpenses] = +cashExpenses;
+            this.income[itemExpenses] = +cashExpenses;
         }
-    });
+    }    
 }
 
-getIncome() {
-    incomeItems.forEach((item) => {
+getIncome () {
+    incomeItems = document.querySelectorAll('.income-items');
+    for (let item of incomeItems)  {
         let itemIncome = item.querySelector('.income-title').value,
             cashIncome = item.querySelector('.income-amount').value;
-
         if (itemIncome !== '' && cashIncome !== '') {
             this.income[itemIncome] = +cashIncome;
         }
-    });
+    }
 }
 
 //mark
