@@ -59,8 +59,7 @@ window.addEventListener('DOMContentLoaded', function () {
             menuItems = menu.querySelectorAll('ul>li'),
           handlerMenu = () => {
 
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && 
-            window.innerWidth >= 1000 && !menu.classList.contains("active-menu")) {
+        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
             
                 menu.classList.toggle('active-menu');
             }  else {
@@ -68,12 +67,18 @@ window.addEventListener('DOMContentLoaded', function () {
                     menu.style.transform = `translate(0)`;
                 } else {
                         menu.style.transform = `translate(-100%)`;
-                        menu.removeAttribute('style');
-                        menu.classList.remove('active-menu');
-                                      
-                    
                 }
             }
+//mark
+//Hardcore
+// if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && 
+// window.innerWidth >= 1000 && !menu.contains('active-menu') && menu.style.transform !== `translate(0)`) {
+//     menu.classList.toggle('active-menu');
+// } else if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && 
+// window.innerWidth >= 1000 && menu.contains('active-menu') && menu.style.transform !== `translate(0)`) {
+//     menu.classList.toggle('active-menu');
+// }
+
         };
 
         btnMenu.addEventListener('click', handlerMenu);
