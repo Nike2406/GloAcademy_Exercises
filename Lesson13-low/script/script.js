@@ -57,10 +57,20 @@ window.addEventListener('DOMContentLoaded', function () {
             menu = document.querySelector('menu'),
             closeBtn = document.querySelector('.close-btn'),
             menuItems = menu.querySelectorAll('ul>li'),
+          handlerMenu = () => {
 
-            handlerMenu = () => {
+        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && 
+            window.innerWidth >= 1000) {
+            
                 menu.classList.toggle('active-menu');
-            };
+            }  else {
+                if(!menu.style.transform || menu.style.transform === `translate(-100%)`) {
+                    menu.style.transform = `translate(0)`;
+                } else {
+                    menu.style.transform = `translate(-100%)`;
+                }
+            }
+        };
 
         btnMenu.addEventListener('click', handlerMenu);
         closeBtn.addEventListener('click', handlerMenu);
@@ -77,7 +87,10 @@ window.addEventListener('DOMContentLoaded', function () {
             popUpTab = document.querySelector('.popup-content');
 
 
-    if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && 
+    window.innerWidth >= 1000) {
+         console.log('window.innerWidth: ', window.innerWidth);
+         
 
         popupBtn.forEach((elem) => {
             elem.addEventListener('click', () => {
