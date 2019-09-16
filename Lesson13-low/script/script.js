@@ -67,7 +67,13 @@ window.addEventListener('DOMContentLoaded', function () {
                 if(!menu.style.transform || menu.style.transform === `translate(-100%)`) {
                     menu.style.transform = `translate(0)`;
                 } else {
-                    menu.style.transform = `translate(-100%)`;
+                    if (menu.style.transform === `translate(0px)`) {
+                        menu.style.transform = `translate(-100%)`;
+                        menu.removeAttribute('style');
+                    } else {
+                        menu.classList.remove('active-menu');
+                    }                  
+                    
                 }
             }
         };
@@ -149,7 +155,6 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 /* Черновик анимации через CSS
-
 popupBtn.forEach((elem) => {
             elem.addEventListener('click', () => {
                 popUp.style.display = 'block';
@@ -162,9 +167,7 @@ popupBtn.forEach((elem) => {
             });
         });
         console.dir(popUpTab);
-
         popUpClose.addEventListener('click', () => {
-
             popUpTab.style.cssText = `                
                 transition: all 0.5s ease-in-out;                
                 transform: translateY(-120%);`;
