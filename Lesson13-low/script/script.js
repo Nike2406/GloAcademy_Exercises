@@ -83,7 +83,6 @@ window.addEventListener('DOMContentLoaded', function () {
             elem.addEventListener('click', () => {
                 popUp.style.display = 'block';
                 popUpTab.style.top = `-${popUpTab.offsetHeight}px`;
-                console.log(popUpTab.offsetHeight);
                 let i= -popUpTab.offsetHeight,
                 
                 showUpTab,
@@ -99,7 +98,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 showUpTab = requestAnimationFrame(tabAnimate);
                 
             });
-            return popUpTab;
         });
 
         popUpClose.addEventListener('click', () => {
