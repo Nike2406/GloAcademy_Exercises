@@ -60,19 +60,17 @@ window.addEventListener('DOMContentLoaded', function () {
           handlerMenu = () => {
 
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) && 
-            window.innerWidth >= 1000) {
+            window.innerWidth >= 1000 && !menu.classList.contains("active-menu")) {
             
                 menu.classList.toggle('active-menu');
             }  else {
                 if(!menu.style.transform || menu.style.transform === `translate(-100%)`) {
                     menu.style.transform = `translate(0)`;
                 } else {
-                    if (menu.style.transform === `translate(0px)`) {
                         menu.style.transform = `translate(-100%)`;
                         menu.removeAttribute('style');
-                    } else {
                         menu.classList.remove('active-menu');
-                    }                  
+                                      
                     
                 }
             }
