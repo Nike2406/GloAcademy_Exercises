@@ -77,7 +77,7 @@ window.addEventListener('DOMContentLoaded', function () {
             popUpTab = document.querySelector('.popup-content');
 
 
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 
         popupBtn.forEach((elem) => {
             elem.addEventListener('click', () => {
@@ -88,7 +88,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 showUpTab,
                 tabAnimate = () => {
                     showUpTab = requestAnimationFrame(tabAnimate);
-                    i+=10;
+                    i += 10;
                     if (i <  60) {
                         popUpTab.style.top = i + 'px';
                     } else {
