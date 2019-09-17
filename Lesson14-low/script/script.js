@@ -80,10 +80,13 @@ window.addEventListener('DOMContentLoaded', function () {
                 let target = event.target;
                 console.log('target: ', target);
 
+
                 if (target.classList.contains('menu') || target.closest('.menu') ||
                 target.classList.contains('close-btn')) {
                     menu.classList.toggle('active-menu');
                 } else if (menu.classList.contains('active-menu') && !(target.closest('.active-menu'))) {
+                    menu.classList.toggle('active-menu');
+                } else if (target.closest('.active-menu') && !(target.classList.contains('active-menu'))) {
                     menu.classList.toggle('active-menu');
                 }
                 // else {
