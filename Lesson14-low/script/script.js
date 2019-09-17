@@ -53,29 +53,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //Menu
     const toggleMenu = () => {
-        const btnMenu = document.querySelector('.menu'),
-            menu = document.querySelector('menu'),
-            closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li'),
+        const menu = document.querySelector('menu'),
             body = document.querySelector('body');
 
         body.addEventListener('click', (event) => {
             let target = event.target;
-            console.log('target: ', target);
-            // handlerMenu = () => {
-
-            //     if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-
-            //         menu.classList.toggle('active-menu');
-            //     } else {
-            // if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
-            //     menu.style.transform = `translate(0)`;
-            // } else {
-            //     menu.style.transform = `translate(-100%)`;
-            // }
-            //     }
-
-            // };
 
             if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 
@@ -97,9 +79,6 @@ window.addEventListener('DOMContentLoaded', function () {
             }
 
         });
-        // btnMenu.addEventListener('click', handlerMenu);
-        // closeBtn.addEventListener('click', handlerMenu);
-        // menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
 
     };
     toggleMenu();
