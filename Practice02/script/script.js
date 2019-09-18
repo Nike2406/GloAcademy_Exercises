@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
 
@@ -90,8 +90,7 @@ window.addEventListener('DOMContentLoaded', function () {
             popUpTab = document.querySelector('.popup-content');
 
 
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) &&
-            window.innerWidth >= 1000) {
+        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 
             popupBtn.forEach((elem) => {
                 elem.addEventListener('click', () => {
