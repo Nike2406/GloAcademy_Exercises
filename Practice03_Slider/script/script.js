@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
             idInterval = setInterval(updateClock, 1000);
     };
 
-    countTimer('9 16 2019 00:08:40');
+    countTimer('11 16 2019 00:08:40');
 
     //Menu
     const toggleMenu = () => {
@@ -87,13 +87,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const togglePopUp = () => {
         let popUp = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn'),
-            popUpTab = document.querySelector('.popup-content');
+            popUpTab = document.querySelector('.popup-content'),
+            service = document.querySelector('.service');
 
 
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 
-            popupBtn.forEach((elem) => {
-                elem.addEventListener('click', () => {
+
+            service.addEventListener('click', (event) => {
+                let target = event.target;
+                if (target.classList.contains('popup-btn')) {
                     popUp.style.display = 'block';
                     popUpTab.style.top = `-${popUpTab.offsetHeight}px`;
                     let i = -popUpTab.offsetHeight,
@@ -109,8 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             }
                         };
                     requestAnimationFrame(tabAnimate);
-
-                });
+                }
             });
 
             popUp.addEventListener('click', () => {
@@ -145,10 +147,11 @@ window.addEventListener('DOMContentLoaded', () => {
             });
 
         } else {
-            popupBtn.forEach((elem) => {
-                elem.addEventListener('click', () => {
+            service.addEventListener('click', (event) => {
+                let target = event.target;
+                if (target.classList.contains('popup-btn')) {
                     popUp.style.display = 'block';
-                });
+                }
             });
 
             //Добавляем общее
@@ -221,9 +224,9 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         };
         getNewDot();
-            
+
         let dot = document.querySelectorAll('.dot');
-            dot[0].classList.add('dot-active');
+        dot[0].classList.add('dot-active');
 
         let currentSlide = 0,
             interval;
@@ -267,7 +270,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (target.matches('#arrow-right')) {
                 currentSlide++;
-            } else if (target.matches('#arrow-left')){
+            } else if (target.matches('#arrow-left')) {
                 currentSlide--;
             } else if (target.matches('.dot')) {
                 dot.forEach((elem, index) => {
@@ -292,18 +295,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
         slider.addEventListener('mouseover', (event) => {
             if (event.target.matches('.portfolio-btn') ||
-            event.target.matches('.dot')) {
+                event.target.matches('.dot')) {
                 stopSlide();
             }
         });
+
         slider.addEventListener('mouseout', (event) => {
             if (event.target.matches('.portfolio-btn') ||
-            event.target.matches('.dot')) {
+                event.target.matches('.dot')) {
                 startSlide();
             }
         });
 
-        startSlide(1500);
+        startSlide(2000);
     };
     slider();
 
