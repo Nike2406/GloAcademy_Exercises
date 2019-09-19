@@ -4,8 +4,6 @@ class SliderCarousel {
     constructor({
         main,
         wrap,
-        // next,
-        // prev,
         infinity = false,
         position = 0,
         slidesToShow = 3,
@@ -17,8 +15,6 @@ class SliderCarousel {
         this.main = document.querySelector(main);
         this.wrap = document.querySelector(wrap);
         this.slides = document.querySelector(wrap).children;
-        // this.next = document.querySelector(next);
-        // this.prev = document.querySelector(prev);
         this.slidesToShow = slidesToShow;
         this.options = {
             position,
@@ -173,4 +169,3 @@ class SliderCarousel {
         window.addEventListener('resize', checkResponse);
     }
 }
-//2.16 zaiptalo
