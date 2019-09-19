@@ -311,6 +311,30 @@ window.addEventListener('DOMContentLoaded', () => {
     };
     slider();
 
+    //Team 
+    const hoverCommand = () => {
+        let commandBlock = document.querySelector('.command');
+        let imgBack;
+        commandBlock.addEventListener('mouseover', (event) => {
+            imgBack = event.target.src;
+            event.target.src = event.target.dataset.img;
+        });
+        commandBlock.addEventListener('mouseout', (event) => {
+            event.target.src = imgBack;
+        });
+    };
+    hoverCommand();
+
+    //Numeral calculate
+    const numeralCalculate = () => {
+        let calcItem = document.querySelectorAll('.calc-item');
+        console.log('calcItem: ', calcItem.length);
+            for (let i = 1; i < calcItem.length; i++) {
+                calcItem[i].textContent = calcItem[i].value.replace(/\d/g, '');
+            }
+       
+    };
+    numeralCalculate();
 
     //Проверка
     // document.addEventListener('click', (elem) => {
