@@ -85,7 +85,6 @@ class SliderCarousel {
     prevSlider() {
         if (this.options.position > 0 || this.options.infinity) {
             --this.options.position;
-            console.log('this.options.position: ', this.options.position);
             if (this.options.position < 0) {
                 this.options.position = this.options.maxPosition;
             }
@@ -96,7 +95,6 @@ class SliderCarousel {
     nextSlider() {
         if (this.options.infinity || this.options.position < this.options.maxPosition) {
             ++this.options.position;
-            console.log('this.options.position: ', this.options.position);
             if (this.options.position > this.options.maxPosition) {
                 this.options.position = 0;
             }
