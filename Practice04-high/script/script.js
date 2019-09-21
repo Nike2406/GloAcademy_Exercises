@@ -340,10 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     total = price * typeValue * squareValue * countValue * dayValue;
                 }
 
-                // totalValue.textContent = total;
-                // console.log(this.total);
-                //
-                console.log('length', total.toString().length);
                 if (total > 0) {
                     let startTotal = 0,
                         totalAnimation = setInterval(() => {
@@ -352,9 +348,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 return;
                             }
                             totalValue.textContent = startTotal++;
-
-                            // console.log('total: ', total);
-                            // console.log('startTotal: ', startTotal);
                         }, 1);
                 }
 
@@ -373,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     calc(100);
-    
+
     //Team 
     const hoverCommand = () => {
         let commandBlock = document.querySelector('.command');
