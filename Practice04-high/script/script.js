@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //popup
     const togglePopUp = () => {
         let popUp = document.querySelector('.popup'),
-            popupBtn = document.querySelectorAll('.popup-btn'),
             popUpTab = document.querySelector('.popup-content'),
             service = document.querySelector('.service');
 
@@ -339,42 +338,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (typeValue && squareValue) {
                     total = price * typeValue * squareValue * countValue * dayValue;
-                } 
+                }
 
                 // totalValue.textContent = total;
                 // console.log(this.total);
                 //
-                console.log('length',total.toString().length);
+                console.log('length', total.toString().length);
                 if (total > 0) {
                     let startTotal = 0,
-                    totalAnimation = setInterval(() => {
-                        if (startTotal > total) {
-                            clearInterval(totalAnimation);
-                            return;
-                        }
-                        totalValue.textContent = startTotal++;
-                        
-                        // console.log('total: ', total);
-                        // console.log('startTotal: ', startTotal);
-                    }, 1);
+                        totalAnimation = setInterval(() => {
+                            if (startTotal > total) {
+                                clearInterval(totalAnimation);
+                                return;
+                            }
+                            totalValue.textContent = startTotal++;
+
+                            // console.log('total: ', total);
+                            // console.log('startTotal: ', startTotal);
+                        }, 1);
                 }
-                    
-                
+
+
             };
 
-            
+
 
 
         calcBlock.addEventListener('change', (event) => {
             const target = event.target;
 
-            if  (target.matches('select') || target.matches('input')) {
+            if (target.matches('select') || target.matches('input')) {
                 countSum();
             }
         });
     };
     calc(100);
+    
+    //Team 
+    const hoverCommand = () => {
+        let commandBlock = document.querySelector('.command');
+        let imgBack;
+        commandBlock.addEventListener('mouseover', (event) => {
+            imgBack = event.target.src;
+            event.target.src = event.target.dataset.img;
+        });
+        commandBlock.addEventListener('mouseout', (event) => {
+            event.target.src = imgBack;
+        });
+    };
+    hoverCommand();
 
+    //Numeral calculate
+    const numeralCalculate = () => {
+        const calcBlock = document.querySelector('.calc-block');
+
+        calcBlock.addEventListener('input', (event) => {
+            let target = event.target;
+
+            if (target.matches('input')) {
+                target.value = target.value.replace(/\D/g, '');
+            }
+        });
+
+    };
+    numeralCalculate();
 
     //Проверка
     // document.addEventListener('click', (elem) => {
