@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slider();
 
     //Calculation
-    const calc = (price =100) => {
+    const calc = (price = 100) => {
         const calcBlock = document.querySelector('.calc-block'),
             calcType = document.querySelector('.calc-type'),
             calcSquare = document.querySelector('.calc-square'),
@@ -341,18 +341,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     total = price * typeValue * squareValue * countValue * dayValue;
                 } 
 
-                totalValue.textContent = total;
+                // totalValue.textContent = total;
+                // console.log(this.total);
                 //
+                console.log(total);
+                if (total > 0) {
+                    let startTotal = 0,
+                    totalAnimation = setInterval(() => {
+                        if (startTotal > total) {
+                            clearInterval(totalAnimation);
+                            return;
+                        }
+                        totalValue.textContent = startTotal++;
+                        
+                        console.log('total: ', total);
+                        console.log('startTotal: ', startTotal);
+                    }, 1);
+                }
+                    //
 
-                // let startTotal = 0,
+                    function animate({timing, draw, duration}) {
 
-                    // totalAnimation = setInterval((total) => {
-                    //     totalValue.textContent = startTotal++;
-                    //     if (startTotal >= total) {
-                    //         clearInterval(totalAnimation);
-                    //     }
-                    // }, 100);
-
+                        let start = performance.now();
+                      
+                        requestAnimationFrame(function animate(time) {
+                          // timeFraction изменяется от 0 до 1
+                          let timeFraction = (time - start) / duration;
+                          if (timeFraction > 1) {timeFraction = 1;}
+                      
+                          // вычисление текущего состояния анимации
+                          let progress = timing(timeFraction);
+                      
+                          draw(progress); // отрисовать её
+                      
+                          if (timeFraction < 1) {
+                            requestAnimationFrame(animate);
+                          }
+                      
+                        });
+                      }
+                    
                     //
                 
             };
