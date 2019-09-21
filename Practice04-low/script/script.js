@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //popup
     const togglePopUp = () => {
         let popUp = document.querySelector('.popup'),
-            popupBtn = document.querySelectorAll('.popup-btn'),
             popUpTab = document.querySelector('.popup-content'),
             service = document.querySelector('.service');
 
@@ -356,6 +355,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     calc(100);
+
+    //Team 
+    const hoverCommand = () => {
+        let commandBlock = document.querySelector('.command');
+        let imgBack;
+        commandBlock.addEventListener('mouseover', (event) => {
+            imgBack = event.target.src;
+            event.target.src = event.target.dataset.img;
+        });
+        commandBlock.addEventListener('mouseout', (event) => {
+            event.target.src = imgBack;
+        });
+    };
+    hoverCommand();
+
+    //Numeral calculate
+    const numeralCalculate = () => {
+        const calcBlock = document.querySelector('.calc-block');
+
+        calcBlock.addEventListener('input', (event) => {
+            let target = event.target;
+
+            if (target.matches('input')) {
+                target.value = target.value.replace(/\D/g, '');
+            }
+        });
+
+    };
+    numeralCalculate();
 
 
     //Проверка
