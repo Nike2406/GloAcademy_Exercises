@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // totalValue.textContent = total;
                 // console.log(this.total);
                 //
-                console.log(total);
+                console.log('length',total.toString().length);
                 if (total > 0) {
                     let startTotal = 0,
                     totalAnimation = setInterval(() => {
@@ -352,36 +352,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             clearInterval(totalAnimation);
                             return;
                         }
-                        totalValue.textContent = startTotal++;
+                        totalValue.textContent = startTotal * (+(total.toString().length));
                         
-                        console.log('total: ', total);
-                        console.log('startTotal: ', startTotal);
+                        // console.log('total: ', total);
+                        // console.log('startTotal: ', startTotal);
                     }, 1);
                 }
-                    //
-
-                    function animate({timing, draw, duration}) {
-
-                        let start = performance.now();
-                      
-                        requestAnimationFrame(function animate(time) {
-                          // timeFraction изменяется от 0 до 1
-                          let timeFraction = (time - start) / duration;
-                          if (timeFraction > 1) {timeFraction = 1;}
-                      
-                          // вычисление текущего состояния анимации
-                          let progress = timing(timeFraction);
-                      
-                          draw(progress); // отрисовать её
-                      
-                          if (timeFraction < 1) {
-                            requestAnimationFrame(animate);
-                          }
-                      
-                        });
-                      }
                     
-                    //
                 
             };
 

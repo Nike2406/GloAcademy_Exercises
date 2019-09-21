@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
 
@@ -86,7 +86,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //popup
     const togglePopUp = () => {
         let popUp = document.querySelector('.popup'),
-            popupBtn = document.querySelectorAll('.popup-btn'),
             popUpTab = document.querySelector('.popup-content'),
             service = document.querySelector('.service');
 
@@ -327,12 +326,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     //Numeral calculate
     const numeralCalculate = () => {
-        let calcItem = document.querySelectorAll('.calc-item');
-        console.log('calcItem: ', calcItem.length);
-            for (let i = 1; i < calcItem.length; i++) {
-                calcItem[i].textContent = calcItem[i].value.replace(/\d/g, '');
+        const calcBlock = document.querySelector('.calc-block');
+
+        calcBlock.addEventListener('input', (event) => {
+            let target = event.target;
+
+            if (target.matches('input')) {
+                target.value = target.value.replace(/\D/g, '');
             }
-       
+        });
+
     };
     numeralCalculate();
 
