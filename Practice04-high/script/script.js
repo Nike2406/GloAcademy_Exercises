@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             clearInterval(totalAnimation);
                             return;
                         }
-                        totalValue.textContent = startTotal * (+(total.toString().length));
+                        totalValue.textContent = startTotal++;
                         
                         // console.log('total: ', total);
                         // console.log('startTotal: ', startTotal);
