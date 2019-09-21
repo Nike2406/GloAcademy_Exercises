@@ -345,11 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         totalAnimation = setInterval(() => {
                             if (startTotal > total) {
                                 clearInterval(totalAnimation);
-                                totalValue.textContent = total;
+                                totalValue.textContent = Math.floor(total);
                                 return;
                             }
                             totalValue.textContent = startTotal += (Math.pow(10, total.toString().length) / 1000);
-                        }, 10);
+                        }, 8);
                 }
 
 
