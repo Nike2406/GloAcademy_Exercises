@@ -334,8 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (calcDay.value == '') {
                     dayValue *= 0; 
-                }
-                if (calcDay.value && calcDay.value < 5) {
+                } else if (calcDay.value && calcDay.value < 5) {
                     dayValue *= 2;
                 } else if (calcDay.value && calcDay.value < 10) {
                     dayValue *= 1.5;
