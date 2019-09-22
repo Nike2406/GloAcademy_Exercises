@@ -328,8 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (calcCount.value > 1) {
                     countValue += (calcCount.value - 1) / 10;
-                } else if (calcCount.value == '') {
-                    countValue = 1;
                 } else if (calcCount.value >= 0 && calcCount.value < 1) {
                     countValue = 0;
                 }
