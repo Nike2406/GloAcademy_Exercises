@@ -332,6 +332,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     countValue = 0;
                 }
 
+                if (calcDay.value == '') {
+                    dayValue *= 0; 
+                }
                 if (calcDay.value && calcDay.value < 5) {
                     dayValue *= 2;
                 } else if (calcDay.value && calcDay.value < 10) {
