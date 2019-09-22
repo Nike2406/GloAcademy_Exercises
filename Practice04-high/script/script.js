@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (calcCount.value > 1) {
                     countValue += (calcCount.value - 1) / 10;
-                }
+                } 
 
                 if (calcDay.value && calcDay.value < 5) {
                     dayValue *= 2;
@@ -350,6 +350,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             totalValue.textContent = startTotal += (Math.pow(10, total.toString().length) / 1000);
                         }, 8);
+                } else {
+                    totalValue.textContent = Math.floor(total);
                 }
 
 
