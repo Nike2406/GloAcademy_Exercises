@@ -200,22 +200,20 @@ salaryAmount.addEventListener('input', function () {
     }
 });
 
+//Блокировка ввода наименования и суммы
 let blockPlHInput = function () {
-        let plHoldElem = document.querySelectorAll('input[placeholder="Наименование"]');
-        plHoldElem.forEach(function (i) {
-                //     i.addEventListener('input', function () {
-                //         console.log('key was uped');
-                //         if(!/[А-Яа-яЁё]/.test(input.value) || input.value != '') {input.value='';}
-                //     });
-                // });
-                i.oninput = function () {
-                    if(!/^[А-Я][а-я]*/.test(i.value) || i.value != ' ') {i.value='';}
-                    console.log(i.value);
-                };
-
-            });
-        };
-        blockPlHInput();
+        let dataBlockInput = document.querySelector('.data');
+        dataBlockInput.addEventListener('input', () => { 
+        let target = event.target;
+            if (target.placeholder === 'Наименование') {
+                target.value = target.value.replace(/[^А-Яа-яёЁ]/i, '');
+            }
+            if (target.placeholder === 'Сумма') {
+                target.value = target.value.replace(/[^0-9]/, '');
+            }
+        });
+};        
+blockPlHInput();
 
         expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
