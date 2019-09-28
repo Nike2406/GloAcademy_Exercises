@@ -1,5 +1,7 @@
 'use strict';
 
+document.addEventListener('DOMContentLoaded', () => {
+
 function DomElement(selector, height, width, bg, fontSize) {
     this.selector = selector;
     this.height = height;
@@ -29,8 +31,27 @@ elem.addSel();
 let cssElem = document.getElementsByClassName((`${elem.selector}`).slice(1, (`${elem.selector}`).length))[0];
 
 cssElem.style.cssText = `height: ${elem.height}px; width: ${elem.width}px; 
- background-color: ${elem.bg}; font-size: ${elem.fontSize}px`;
- 
- let newElem = new DomElement('.Bye', '200', '200', 'green', '36'); //новый элемент
- console.log('newElem: ', newElem); 
- newElem.addSel(); //вызывем метод класса
+ background-color: ${elem.bg}; font-size: ${elem.fontSize}px; position: absolute`;
+
+
+ let top = 0, 
+    left = 0;
+ document.addEventListener('keydown', (event) => {
+     if (event.key === 'ArrowUp') {
+         top -= 10;
+        cssElem.style.top = top + 'px';
+     }
+     if (event.key === 'ArrowDown') {
+        top += 10;
+       cssElem.style.top = top + 'px';
+    }
+    if (event.key === 'ArrowLeft') {
+        left -= 10;
+       cssElem.style.left = left + 'px';
+    }
+    if (event.key === 'ArrowRight') {
+        left += 10;
+       cssElem.style.left = left + 'px';
+    }
+    });
+});
