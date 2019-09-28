@@ -76,6 +76,7 @@ start() {
 
     this.showResult();
     this.blockInput();
+    this.getElemCookie();
 }
 
 showResult() {
@@ -317,20 +318,46 @@ eventListeners() {
 
 //Работа с localStorage и cookie
 getElemCookie() {
-    let allELements = document.querySelectorAll('input[type=text]'),
-        body = document.querySelector('body');
+    let allELements = document.querySelectorAll('input[type=text]');
         //получаем куки со страницы
-    body.addEventListener('input',(event) => {
-        let target = event.target;    
-        console.log(target.className, target.value);
-        document.cookie = `${target.className}=${target.value}`;
+    
+        allELements.forEach((item) => {
+            if (item.value) {//метка, поставить верное решение
+        // console.log(target.className, target.value);
+        document.cookie = `${item.className}=${item.value}`;
+            }
+            
         console.log('document.cookie: ', document.cookie);
-});
+    });
+
+}
+
+//Забираем элементы
+pullElemCookie () {
+    if (document.cookie) {
+        // Собираем коллекцию всех куки для сравнения
+        const collectionMap = new Map();
+        let cookieData = document.cookie.split('; ');
+        cookieData.forEach((item) => {
+            let newItem = item.split('=');
+            collectionMap.set(newItem[0],newItem[1]);
+        });
+        // Перебираем все инпуты и сравниваем с куки
+        let allELements = document.querySelectorAll('input[type=text]');
+        allELements.forEach((item) => {
+            if (collectionMap.has(`${item.className}`)) {
+                // Если есть совпадение, записываем значение
+                item.value = collectionMap.get(`${item.className}`);
+            }
+        });
+    }
 }
 
 }
 
 const appData = new AppData();
 appData.eventListeners();
+appData.pullElemCookie();
 appData.getElemCookie();
-
+window.onbeforeunload = appData.getElemCookie();
+//mark
