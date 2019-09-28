@@ -315,8 +315,22 @@ eventListeners() {
     });
 }  
 
+//Работа с localStorage и cookie
+getElemCookie() {
+    let allELements = document.querySelectorAll('input[type=text]'),
+        body = document.querySelector('body');
+        //получаем куки со страницы
+    body.addEventListener('input',(event) => {
+        let target = event.target;    
+        console.log(target.className, target.value);
+        document.cookie = `${target.className}=${target.value}`;
+        console.log('document.cookie: ', document.cookie);
+});
+}
+
 }
 
 const appData = new AppData();
 appData.eventListeners();
+appData.getElemCookie();
 
