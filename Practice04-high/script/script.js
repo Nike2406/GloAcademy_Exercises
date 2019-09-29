@@ -347,6 +347,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (total > 0) {
                     let startTotal = 0,
                         totalAnimation = setInterval(() => {
+                            // if (startTotal > 0) {
+                            //     clearInterval(totalAnimation);
+                            //     startTotal = 0;
+                            // }
                             if (startTotal > total) {
                                 clearInterval(totalAnimation);
                                 totalValue.textContent = Math.floor(total);
