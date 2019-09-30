@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     timeRemaining = Math.floor((dateStop - dateNow) / 1000),
                     seconds = Math.floor(timeRemaining % 60),
                     minutes = Math.floor((timeRemaining / 60) % 60),
-                    houres = Math.floor((timeRemaining / 60) / 60);
+                    houres = Math.floor((timeRemaining / 60) % 24);
                 return {
                     timeRemaining,
                     houres,
@@ -325,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     dayValue = 1;
                 const typeValue = calcType.options[calcType.selectedIndex].value,
                     squareValue = +calcSquare.value;
+                    console.log(typeValue);
 
                 if (calcCount.value > 1) {
                     countValue += (calcCount.value - 1) / 10;
@@ -343,26 +344,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeValue && squareValue) {
                     total = price * typeValue * squareValue * countValue * dayValue;
                 }
+            
+                //Перевел анимацию
+                let startTotal = 0;
+                let totalAnimateId;
+                let animate = false; //Переменная для сброса анимации
+                let totalAnimate = () => {
+                    totalAnimateId = requestAnimationFrame(totalAnimate);  
+                    if (startTotal > total) {
+                        cancelAnimationFrame(totalAnimateId);
+                        totalValue.textContent = Math.floor(total);
+                        return;
+                    }
+                    //Формула, чтобы долго не ждать конца анимации, не привязана к числу
+                    totalValue.textContent = startTotal += (Math.pow(10, total.toString().length) / 100);                    
+                     
+                };
 
+                //Зависит от текущей анимации
                 if (total > 0) {
-                    let startTotal = 0,
-                        totalAnimation = setInterval(() => {
-                            // if (startTotal > 0) {
-                            //     clearInterval(totalAnimation);
-                            //     startTotal = 0;
-                            // }
-                            if (startTotal > total) {
-                                clearInterval(totalAnimation);
-                                totalValue.textContent = Math.floor(total);
-                                return;
-                            }
-                            totalValue.textContent = startTotal += (Math.pow(10, total.toString().length) / 1000);
-                        }, 8);
-                } else {
-                    totalValue.textContent = Math.floor(total);
-                }
+                    if (!animate) {
+                        animate = true;
+                        totalAnimateId = requestAnimationFrame(totalAnimate);
+                    } else {
+                        animate = false;
+                        cancelAnimationFrame(totalAnimateId);
+                        startTotal = 0;
+                    }
+                } 
 
-
+                //При удалении параметров из формы, обнуляет итог
+                if(typeValue == '' || squareValue == '' || countValue == '' || dayValue == '') {
+                    animate = false;
+                        cancelAnimationFrame(totalAnimateId);
+                        totalValue.textContent = 0;
+                }            
             };
 
 
